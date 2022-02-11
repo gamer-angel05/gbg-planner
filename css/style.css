@@ -10,12 +10,12 @@ body {
 
 .bg-cover {
 	background-size: cover !important;
-	background-color: gray;
+	background-color: rgba(16, 64, 13, 1);
 	/*background: url("../css/bg-xsmall.png") no-repeat center fixed;*/
 }
 
 #main {
-	max-width: 800px;
+	max-width: 1200px;
 }
 
 .header {
@@ -28,6 +28,27 @@ body {
 .dropdown-menu {
 	max-height: 200px;
     overflow-y: auto;
+}
+
+.guild.map-zone {
+	fill: #b7b7b7;
+	fill-opacity: 0.4;
+}
+
+.map-zone:not(.guild) {
+	fill: #d6d6d6;
+	fill-opacity: 0.4;
+}
+
+/*.js-hover {
+  fill: #FFFFFF;
+}*/
+
+.js-hover:not(.js-active)  {
+  stroke: red;
+  fill: #FFFFFF;
+  fill-opacity: 0.7;
+  stroke-width: .3rem;
 }
 
 #scroll_dropmenu {

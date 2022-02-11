@@ -1,9 +1,9 @@
-let publicSpreadsheetDoc = "https://opensheet.elk.sh/1-XABpNzY6jgg_Bh9KaDKS-pPNgGF22d_yAxqKOAM6RI/FoE%20Tips"; // opensource redirect for google sheet w/o auth
+
 
 function __init__() {
 	/*	Load the public sheet data and cache it.
 	*/
-	var url = window.location.hash;
+	/*var url = window.location.hash;
 	fetch(publicSpreadsheetDoc)
 	.then( response => response.json())
 	.then( data => {
@@ -11,7 +11,7 @@ function __init__() {
 		if (url) {
 			window.location.hash = url;
 		};
-	});
+	});*/
 }
 
 function add_data(documentation) {
