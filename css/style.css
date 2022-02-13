@@ -22,7 +22,7 @@ body {
 	background-color:  rgba(16, 64, 13, 0.5);
 	color: #FFFFFF;
 	padding-top: 10px;
-	padding-bottom: 20px;
+	padding-bottom: 5vh;
 }
 
 .dropdown-menu {
@@ -30,38 +30,43 @@ body {
     overflow-y: auto;
 }
 
-.guild.map-zone {
-	fill: #b7b7b7;
+.map-zone {
+	stroke: #d6d6d6;
+	stroke-width: .1rem;
+}
+
+.guild {
+	fill-opacity: 0.8;
+}
+
+.guild.js-hover {
+	fill-opacity: 1;
+}
+
+.province {
+	fill: white;
+	fill-opacity: 0.2;
+}
+
+.province.js-hover {
 	fill-opacity: 0.4;
 }
 
-.map-zone:not(.guild) {
-	fill: #d6d6d6;
-	fill-opacity: 0.4;
+.province:not(.owner) {
+	fill-opacity: 0.6;
 }
 
-/*.js-hover {
-  fill: #FFFFFF;
-}*/
-
-.js-hover:not(.js-active)  {
-  stroke: red;
-  fill: #FFFFFF;
-  fill-opacity: 0.7;
-  stroke-width: .3rem;
+.province:not(.owner).js-hover {
+	fill-opacity: 0.8;
 }
 
 #scroll_dropmenu {
 	min-width: 300px;
 }
 
-#scroll_row {
-	background-color:  rgba(7, 52, 4, 0.8);
+#map {
+	/*background-color:  gray;rgba(7, 52, 4, 0.8);*/
 	min-height: 0; /* to enable flex on firefox */
-}
-
-#scroll_column {
-	overflow-y: auto;
 }
 
 .footer {
@@ -100,15 +105,4 @@ a {
 
 a:hover {
 	color: #88ebb2;
-}
-
-.img-max {
-	max-width:50%; 
-	float:right; 
-	margin-left:20px;
-}
-
-hr.divider {
-  border-bottom: 1px solid #009f4d;
-  margin: 50px;
 }

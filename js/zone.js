@@ -3,9 +3,10 @@ class Zone {
   static all = [];
   static container = document.querySelector(".js-zone-info");
 
-  constructor({zone, builds, points}) {
-    this.id = zone;
-    this.name = zone;
+  constructor(newZone) {
+    this.id = newZone["zone"];
+    this.info = newZone;
+    this.name = this.id;
 
     this.nameAsClass = this.name.replace(/'/g, "").replace(/ /g, '-').toLowerCase();
     this.mapElement = document.querySelector(`.${this.nameAsClass}`);
