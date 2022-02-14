@@ -243,14 +243,12 @@ var mapZones = [
 			"zone": "D5C",
 			"builds": 1,
 			"points": 30,
-			"backup": 7,
 			"neighbors": ["guild5", "D4C", "D4B", "D5B"]
 		},
 		{
 			"zone": "D4C",
 			"builds": 1,
 			"points": 61,
-			"backup": 15,
 			"neighbors": ["guild5", "E3A", "D3B", "D4B", "D5C", "E4A"]
 		},
 		{
@@ -263,7 +261,6 @@ var mapZones = [
 			"zone": "E4A",
 			"builds": 1,
 			"points": 74,
-			"backup": 52,
 			"neighbors": ["guild5", "E4B", "E3A", "D4C", "E5A", "E5B"]
 		},
 		{
