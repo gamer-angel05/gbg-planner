@@ -1,17 +1,29 @@
-
+const zones = new Zones();
 
 function __init__() {
-	/*	Load the public sheet data and cache it.
+	/*	Load the map if needed
 	*/
-	/*var url = window.location.hash;
-	fetch(publicSpreadsheetDoc)
-	.then( response => response.json())
-	.then( data => {
-		add_data(data);
-		if (url) {
-			window.location.hash = url;
-		};
-	});*/
+	$('[data-toggle="tooltip"]').tooltip({trigger : 'hover'});
+
+	updateHashMap();
+	window.onhashchange = updateHashMap;
+}
+
+function updateHashMap() {
+	
+	const mapArray = [];
+	var hash = window.location.hash;
+
+	if (hash) {
+		const hashArray = hash.replace("#", "").split("&");
+		hashArray.forEach(mapZone => {
+			let zone = mapZone.split("=");
+			let data = zone[1].split(",");
+			mapArray.push({"zone": zone[0], "owner": data[0], "buildings": data[1]});
+		})
+		zones.importZonesWithHash(mapArray);
+		window.location.hash = "";
+	}
 }
 
 function add_data(documentation) {
@@ -70,7 +82,6 @@ function add_content(title, content, index) {
 	s += '<p style="white-space: pre-wrap;">' + content + '</p>';
 	$("#scroll_content").append(s);
 }
-
 
 $(document).on('click', '[data-toggle="lightbox"]', function(event) {
                 event.preventDefault();

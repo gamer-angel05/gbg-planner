@@ -1,4 +1,4 @@
-const colors = ["#df42ae", "#9d26e1", "#262dd8", "#b8aea7", "#14bcbb", "#b4bf12", "#18ba13", "#c4282a", "#FFFFFF"] // [pink,purple,blue,gray,teal,yellow,green,red,black]
+const colors = ["#df42ae", "#9d26e1", "#262dd8", "#b8aea7", "#14bcbb", "#b4bf12", "#18ba13", "#c4282a", "#000000"] // [pink,purple,blue,gray,teal,yellow,green,red,black]
 
 class MapZone {
 
@@ -12,19 +12,21 @@ class MapZone {
     this.zoneId = this.path.dataset["id"];
     this.owner = null;
 
-    if (this.path.classList.value.includes("guild")) {
-      // owner of the guild tile...
-      this.owner = this.path.classList[0];
-      let classGuild = $("." + this.owner);
-      let usedColor = MapZone.all.filter(zone => zone.color).map(({color}) => color);
-      let availableColors = colors.filter(el => !usedColor.includes(el));
-      this.color = availableColors[0];    
+    if (this.path.classList.contains("guild")) {
+        // owner of the guild tile...
+        this.owner = this.path.classList[0];
+        let usedColor = MapZone.all.filter(zone => zone.color).map(({color}) => color);
+        let availableColors = colors.filter(el => !usedColor.includes(el));
+        this.color = availableColors[0];    
+        let classGuild = $("." + this.owner);
+        classGuild.css("fill", this.color);
       
-      classGuild.css("fill", this.color);
-      classGuild = $("." + this.path.classList[0] + ".guild");
-      classGuild.css("stroke", this.color);
+        classGuild = $("." + this.path.classList[0] + ".guild");
+        classGuild.css("stroke", this.color);
 
-      MapZone.guilds.push(this.owner);
+        MapZone.guilds.push(this.owner);
+    } else { // map-zone
+        this.buildings = 0;
     }
 
     this.element.addEventListener('click', this.handleClick);
@@ -33,6 +35,37 @@ class MapZone {
 
     MapZone.all.push(this);
   }
+
+  static importZone = ({zone, owner, buildings}) => {
+    let data = MapZone.all.find(e => e.zoneId === zone);
+    owner = "guild" + owner;
+
+    if (!data.owner) {
+        data.owner = owner;
+        data.path.classList.replace("owner", owner);
+    } else {
+        data.path.classList.replace(data.owner, owner || "owner");
+        data.owner = owner;
+    }
+    data.buildings = buildings;
+
+    let classGuild = $("." + owner);
+    classGuild.css("fill", $("." + owner).css("fill")); // force refresh css??
+  }
+
+  static reset = () => {
+    MapZone.all.forEach(zone => MapZone.resetZone(zone));
+  }
+
+  static resetZone = (zone) => {
+    if (!zone.path.classList.contains("guild") && zone.owner) {
+        zone.path.classList.replace(zone.owner, "owner");
+        zone.owner = null;
+        zone.path.style.fill = "white"
+    }
+  }
+
+
 
   handleMouseEnter = () => {
     this.path.classList.add("js-hover");
@@ -52,29 +85,29 @@ class MapZone {
     const zoneData = Zone.all.find(zone => this.zoneId === zone.id);
 
     if (this.path.classList.contains("guild")) { 
-      // Guild tile only
-      let classGuild = $("." + this.path.classList[0]);
-      let colorIndex = colors.indexOf(this.color);
-      this.color = colors[colorIndex + 1 < colors.length ? colorIndex + 1 : 0];
+        // Guild tile only
+        let classGuild = $("." + this.path.classList[0]);
+        let colorIndex = colors.indexOf(this.color);
+        this.color = colors[colorIndex + 1 < colors.length ? colorIndex + 1 : 0];
 
-      classGuild.css("fill", this.color);
-      classGuild = $("." + this.path.classList[0] + ".guild");
-      classGuild.css("stroke", this.color);
+        classGuild.css("fill", this.color);
+        classGuild = $("." + this.path.classList[0] + ".guild");
+        classGuild.css("stroke", this.color);
 
-      return
+        return
     }
 
     // Provinces owned by guilds
     if (!this.owner) {
       
-      this.owner = MapZone.guilds[0];
-      this.path.classList.replace("owner", this.owner);
+        this.owner = MapZone.guilds[0];
+        this.path.classList.replace("owner", this.owner);
     } else {
       
-      let guildIndex = MapZone.guilds.indexOf(this.owner);
-      let newOwner = guildIndex + 1 > MapZone.guilds.length ? null : MapZone.guilds[guildIndex + 1];
-      this.path.classList.replace(this.owner, newOwner || "owner");
-      this.owner = newOwner;
+        let guildIndex = MapZone.guilds.indexOf(this.owner);
+        let newOwner = guildIndex + 1 > MapZone.guilds.length ? null : MapZone.guilds[guildIndex + 1];
+        this.path.classList.replace(this.owner, newOwner || "owner");
+        this.owner = newOwner;
     }
     classGuild.css("fill", this.owner ? $("." + this.owner).css("fill") : ""); // force refresh css??
 
