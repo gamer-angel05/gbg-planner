@@ -49,8 +49,15 @@ class MapZone {
     }
     data.buildings = buildings;
 
-    let classGuild = $("." + owner);
-    classGuild.css("fill", $("." + owner).css("fill")); // force refresh css??
+    //let classGuild = $("." + owner);
+    //classGuild.css("fill", $("." + owner).css("fill")); // force refresh css??
+  }
+
+  static refreshGuildsFill = () => {
+    MapZone.guilds.forEach(guild => {
+        let classGuild = $("." + guild);
+        classGuild.css("fill", $("." + guild).css("fill")); // force refresh css??
+    })
   }
 
   static reset = () => {

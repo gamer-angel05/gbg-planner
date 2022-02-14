@@ -10,3 +10,8 @@ function handleCopyClick() {
 $('#permalink').on('hidden.bs.tooltip', function () {
   $("#permalink").attr('data-original-title', "Copy to clipboard")
 })
+
+
+function handleResetClick() {
+	zones.resetMapZones();
+}

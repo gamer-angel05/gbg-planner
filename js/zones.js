@@ -11,8 +11,13 @@ class Zones {
     importZonesWithHash(zones) {
         /* Import from hash string, reset map
         */
-        MapZone.reset();
+        this.resetMapZones();
         zones.forEach(zone => MapZone.importZone(zone));
+        MapZone.refreshGuildsFill();
+    }
+
+    resetMapZones() {
+        MapZone.reset();
     }
     
     hashZones() {
