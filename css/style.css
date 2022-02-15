@@ -1,3 +1,15 @@
+/* Set guild assigned colors in mapZone.js */
+:root {
+	--guild0-color: #FFFFFF;
+	--guild1-color: #FFFFFF;
+	--guild2-color: #FFFFFF;
+	--guild3-color: #FFFFFF;
+	--guild4-color: #FFFFFF;
+	--guild5-color: #FFFFFF;
+	--guild6-color: #FFFFFF;
+	--guild7-color: #FFFFFF;
+}
+
 html {
 	height:  100%;
 }
@@ -30,18 +42,12 @@ body {
     overflow-y: auto;
 }
 
+
 .map-zone {
 	stroke: #d6d6d6;
 	stroke-width: .1rem;
 }
 
-.guild {
-	fill-opacity: 0.8;
-}
-
-.guild.js-hover {
-	fill-opacity: 1;
-}
 
 .province {
 	fill: white;
@@ -59,6 +65,79 @@ body {
 .province:not(.owner).js-hover {
 	fill-opacity: 0.8;
 }
+
+
+.guild0 {
+	fill: var(--guild0-color);
+}
+.guild0.guild {
+	stroke: var(--guild0-color);
+}
+
+.guild1 {
+	fill: var(--guild1-color);
+}
+.guild1.guild {
+	stroke: var(--guild1-color);
+}
+
+.guild2 {
+	fill: var(--guild2-color);
+}
+.guild2.guild {
+	stroke: var(--guild2-color);
+}
+
+.guild2 {
+	fill: var(--guild2-color);
+}
+.guild2.guild {
+	stroke: var(--guild2-color);
+}
+
+.guild3 {
+	fill: var(--guild3-color);
+}
+.guild3.guild {
+	stroke: var(--guild3-color);
+}
+
+.guild4 {
+	fill: var(--guild4-color);
+}
+.guild4.guild {
+	stroke: var(--guild4-color);
+}
+
+.guild5 {
+	fill: var(--guild5-color);
+}
+.guild5.guild {
+	stroke: var(--guild5-color);
+}
+
+.guild6 {
+	fill: var(--guild6-color);
+}
+.guild6.guild {
+	stroke: var(--guild6-color);
+}
+
+.guild7 {
+	fill: var(--guild7-color);
+}
+.guild7.guild {
+	stroke: var(--guild7-color);
+}
+
+.guild {
+	fill-opacity: 0.8;
+}
+
+.guild.js-hover {
+	fill-opacity: 1;
+}
+
 
 #scroll_dropmenu {
 	min-width: 300px;
