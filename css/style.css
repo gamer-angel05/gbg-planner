@@ -75,9 +75,6 @@ body {
 .guild0 {
 	fill: var(--guild0-color);
 }
-.guild0.province {
-	stroke: var(--guild0-color);;
-}
 .guild0.guild {
 	stroke: var(--guild0-color);
 }
