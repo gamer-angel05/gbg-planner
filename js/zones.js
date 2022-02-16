@@ -18,6 +18,38 @@ class Zones {
     resetMapZones() {
         MapZone.reset();
     }
+
+    resetMapZone() {
+        MapZone.isResetMode = true
+
+    }
+
+    togglePickerResetMode() {
+        /*  Toggle the Erase to reset individual map zones
+        */
+        if (!MapZone.isResetMode) {
+            $("#picker-reset")[0].classList.replace("btn-dark", "btn-info");
+            MapZone.lockGuilds();
+        } else {
+            $("#picker-reset")[0].classList.replace("btn-info", "btn-dark");
+            MapZone.unlockGuilds();
+        }
+        MapZone.isResetMode = !MapZone.isResetMode;
+    }
+
+    togglePickerMapZones() {
+        /*  Toggle the Picker to copy paste owner to multiple provinces
+        */
+        if (!MapZone.isPickerMode) {
+            $("#picker")[0].classList.replace("btn-dark", "btn-info");
+            MapZone.lockProvinces()
+        } else {
+            $("#picker")[0].classList.replace("btn-info", "btn-dark");
+            MapZone.unlockProvinces()
+        }
+        MapZone.picker = null;
+        MapZone.isPickerMode = !MapZone.isPickerMode;
+    }
     
     hashZones() {
         /*  Hash that returns all map zones as a single string, 

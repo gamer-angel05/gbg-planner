@@ -1,10 +1,9 @@
 const zones = new Zones();
 const mapGroups = document.querySelectorAll(".map-group");
 
-zones.setupZonesWithMap(mapGroups);
 
 function handleCopyClick() {
-	copyToClipboard(window.location.href.split("#")[0] + "#" + zones.hashZones())
+	copyToClipboard(window.location.href.split("#")[0] + "#" + zones.hashZones());
 	$("#permalink").attr('data-original-title', "Copied!").tooltip('show');
 }
 
@@ -34,11 +33,20 @@ function handleResetClick() {
 	zones.resetMapZones();
 }
 
+function handlePickerResetClick() {
+	zones.togglePickerResetMode();
+}
+
+function handlePickerClick() {
+	zones.togglePickerMapZones();
+}
+
+
 function __init__() {
-	/*	Load the map if needed
+	/*	Setup and load the map if needed
 	*/
 	$('[data-toggle="tooltip"]').tooltip({trigger : 'hover'});
-
+	zones.setupZonesWithMap(mapGroups);
 	updateHashMap();
 	window.onhashchange = updateHashMap;
 }

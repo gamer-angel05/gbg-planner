@@ -7,6 +7,9 @@ class MapZone {
   static guilds = [];
   static all = [];
   static mapContainer = document.querySelector(".js-map");
+  static picker = null;
+  static isPickerMode = false;
+  static isResetMode = false;
 
     constructor(mapGroup) {
         this.element = mapGroup;
@@ -59,6 +62,31 @@ class MapZone {
         }
     }
 
+    static lock = () => {
+        MapZone.all.forEach(zone => zone.path.classList.add("lock"));
+    }
+
+    static lockGuilds = () => {
+        MapZone.all.forEach(zone => zone.path.classList.contains("guild") && zone.path.classList.add("lock"));
+    }
+
+    static lockProvinces = () => {
+        MapZone.all.forEach(zone => !zone.path.classList.contains("guild") && zone.path.classList.add("lock"));
+    }
+
+    static unlock = () => {
+        MapZone.all.forEach(zone => zone.path.classList.remove("lock"));
+    }
+
+    static unlockGuilds = () => {
+        MapZone.all.forEach(zone => zone.path.classList.contains("guild") && zone.path.classList.remove("lock"));
+    }
+
+    static unlockProvinces = () => {
+        MapZone.all.forEach(zone => !zone.path.classList.contains("guild") && zone.path.classList.remove("lock"));
+    }
+
+
     handleMouseEnter = () => {
         this.path.classList.add("js-hover");
     }
@@ -67,10 +95,25 @@ class MapZone {
         this.path.classList.remove("js-hover");
     }
 
+    handlePickerClick = () => {
+        MapZone.picker = this.owner;
+    }
+
     handleClick = () => {
+        // Picker is active
+        if (MapZone.isResetMode) {
+            MapZone.resetZone(this);
+            return
+        } else if (MapZone.isPickerMode && this.path.classList.contains("guild")) {
+            this.handlePickerClick();
+            return
+        }
+
         // Set active tile
         MapZone.all.forEach(zone => zone.path.classList.replace("js-active", "js-inactive"));
         this.path.classList.replace("js-inactive", "js-active");
+
+        //$("#zone-label").text(this.zoneId);
 
         const zoneData = Zone.all.find(zone => this.zoneId === zone.id);
 
@@ -79,6 +122,10 @@ class MapZone {
             let colorIndex = colors.indexOf(this.color);
             this.color = colors[colorIndex + 1 < colors.length ? colorIndex + 1 : 0];
             bodyStyles.setProperty("--" + this.path.classList[0] + "-color", this.color);
+        } else if (MapZone.picker) {
+            if (this.owner) this.path.classList.replace(this.owner, "owner");
+            this.owner = MapZone.picker;
+            this.path.classList.replace("owner", this.owner);
         } else if (!this.owner) {
             // Provinces owned by guilds
             this.owner = MapZone.guilds[0];

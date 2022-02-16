@@ -22,82 +22,136 @@
 	  					<div class="container"><img id="img-crest" src="./css/logo.png" alt="Crest" /></div>
 	  					<div class="container"><img id="img-logo" src="./css/swords-of-light.png" alt="Swords of Light" /></div>
 	  				</a>
-	  				<div class="container"><h2>GBG Planner</h2></div>
-	  				<div class="container input-group justify-content-center">
-	  					<div class="input-group-append">
-	  						<button id="permalink" class="btn btn-primary" type="button" onclick="handleCopyClick();" data-toggle="tooltip" data-placement="bottom" title="Copy to clipboard">
-	  							<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewBox="0 0 490.35 490.35" xml:space="preserve">
-									<g fill="#FFFFFF">
-										<path d="M468.675,54.775l-33-33c-28.9-28.9-75.9-28.9-104.8,0l-75.2,75.2c-28.9,28.9-28.9,75.9,0,104.8l1.9,1.9l-53.9,53.9l-2-2
-										c-28.9-28.9-75.9-28.9-104.8,0l-75.2,75.2c-28.9,28.9-28.9,75.9,0,104.8l33,33c28.9,28.9,75.9,28.9,104.8,0l75.2-75.2
-										c28.9-28.9,28.9-75.9,0-104.8l-1.9-1.9l53.9-53.9l2,2c28.9,28.9,75.9,28.9,104.8,0l75.2-75.2
-										C497.575,130.775,497.575,83.675,468.675,54.775z M205.675,317.575c12.9,12.9,12.9,33.9,0,46.9l-75.2,75.2
-										c-12.9,12.9-33.9,12.9-46.9,0l-33-33c-12.9-12.9-12.9-33.9,0-46.9l75.2-75.2c12.9-12.9,33.9-12.9,46.9,0l2,2l-32.6,32.6
-										c-8.3,8.3-8.3,20.8,0,29.2c4.2,4.2,9.4,6.3,14.6,6.3s10.4-2.1,14.6-6.3l32.6-32.6L205.675,317.575z M439.675,130.675l-75.2,75.2
-										c-12.9,12.9-33.9,12.9-46.9,0l-2-2l32.6-32.6c8.3-8.3,8.3-20.8,0-29.2s-20.8-8.3-29.2,0l-32.6,32.6l-1.9-1.9
-										c-12.9-12.9-12.9-33.9,0-46.9l75.2-75.2c12.9-12.9,33.9-12.9,46.9,0l33,33C452.675,96.675,452.675,117.675,439.675,130.675z"/>
-									</g>
-								</svg>
-	  						</button>
-							<button id="reset-state" class="btn btn-dark" type="button" onclick="handleResetClick();" title="Reset the map" data-toggle="tooltip" data-placement="bottom" data-html="true">
-								<svg version="1.1" width="32" height="32" viewBox="0 0 303.597 303.597" aria-hidden="true">
-									<path style="fill:#FFFFFF;" d="M57.866,268.881c25.982,19.891,56.887,30.403,89.369,30.402h0.002c6.545,0,13.176-0.44,19.707-1.308
-									c39.055-5.187,73.754-25.272,97.702-56.557c14.571-19.033,24.367-41.513,28.329-65.01c0.689-4.084-2.064-7.954-6.148-8.643
-									l-19.721-3.326c-1.964-0.33-3.974,0.131-5.595,1.284c-1.621,1.153-2.717,2.902-3.048,4.864
-									c-3.019,17.896-10.49,35.032-21.608,49.555c-18.266,23.861-44.73,39.181-74.521,43.137c-4.994,0.664-10.061,1-15.058,1
-									c-24.757,0-48.317-8.019-68.137-23.191c-23.86-18.266-39.18-44.73-43.136-74.519c-3.957-29.787,3.924-59.333,22.189-83.194
-									c21.441-28.007,54.051-44.069,89.469-44.069c24.886,0,48.484,7.996,68.245,23.122c6.55,5.014,12.43,10.615,17.626,16.754
-									l-36.934-6.52c-1.956-0.347-3.973,0.101-5.604,1.241c-1.631,1.141-2.739,2.882-3.085,4.841l-3.477,19.695
-									c-0.72,4.079,2.003,7.969,6.081,8.689l88.63,15.647c0.434,0.077,0.869,0.114,1.304,0.114c1.528,0,3.031-0.467,4.301-1.355
-									c1.63-1.141,2.739-2.882,3.084-4.841l15.646-88.63c0.721-4.079-2.002-7.969-6.081-8.69l-19.695-3.477
-									c-4.085-0.723-7.97,2.003-8.689,6.082l-6.585,37.3c-7.387-9.162-15.87-17.463-25.248-24.642
-									c-25.914-19.838-56.86-30.324-89.495-30.324c-46.423,0-89.171,21.063-117.284,57.787C6.454,93.385-3.878,132.123,1.309,171.178
-									C6.497,210.236,26.583,244.933,57.866,268.881z"/>
-								</svg>
-							</button>
-							<!--<button id="save-state" class="btn btn-success" type="button" onclick="handleSaveStateClick();" data-toggle="tooltip" data-placement="bottom" title="Save the current state of the map">
-								<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewBox="0 0 492 492" xml:space="preserve">
-									<g fill="#FFFFFF">
-										<path d="M465.064,207.566l0.028,0H284.436V27.25c0-14.84-12.016-27.248-26.856-27.248h-23.116
-										c-14.836,0-26.904,12.408-26.904,27.248v180.316H26.908c-14.832,0-26.908,12-26.908,26.844v23.248
-										c0,14.832,12.072,26.78,26.908,26.78h180.656v180.968c0,14.832,12.064,26.592,26.904,26.592h23.116
-										c14.84,0,26.856-11.764,26.856-26.592V284.438h180.624c14.84,0,26.936-11.952,26.936-26.78V234.41
-										C492,219.566,479.904,207.566,465.064,207.566z"/>
-									</g>
-								</svg>
-							</button>
-							<button id="prev-state" class="btn btn-dark" type="button" onclick="handlePrevStateClick();" data-toggle="tooltip" data-placement="bottom" title="Previous state">
-							<svg width="32" height="32" viewBox="0 -0.5 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="si-glyph si-glyph-arrow-left">
-							    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-							        <path d="M10.978,1.162 C10.978,1.387 10.916,1.612 10.782,1.812 L6.626,8.041 L10.823,14.078 C11.182,14.619 11.036,15.348 10.495,15.707 C9.956,16.068 9.224,15.922 8.865,15.382 L4.235,8.694 C3.971,8.3 3.969,7.786 4.233,7.39 L8.822,0.51 C9.182,-0.032 9.914,-0.178 10.454,0.181 C10.795,0.409 10.978,0.782 10.978,1.162 L10.978,1.162 Z" fill="#FFFFFF" class="si-glyph-fill"></path>
-							    </g>
-							</svg></button>
-							<button id="next-state" class="btn btn-dark" type="button" onclick="handleNextStateClick();" data-toggle="tooltip" data-placement="bottom" title="Next state">
-								<svg width="32" height="32" viewBox="0.5 -0.5 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="si-glyph si-glyph-arrow-right">
+	  				<div class="container">
+	  					<h2>GBG Planner</h2>
+	  				</div>
+	  				<div class="container">
+		  				<div class="input-group justify-content-center">
+		  					<div class="input-group-append">
+		  						<button id="permalink" class="btn btn-primary" type="button" onclick="handleCopyClick();" data-toggle="tooltip" data-placement="bottom" title="Copy to clipboard">
+		  							<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewBox="0 0 490.35 490.35" xml:space="preserve">
+										<g fill="#FFFFFF">
+											<path d="M468.675,54.775l-33-33c-28.9-28.9-75.9-28.9-104.8,0l-75.2,75.2c-28.9,28.9-28.9,75.9,0,104.8l1.9,1.9l-53.9,53.9l-2-2
+											c-28.9-28.9-75.9-28.9-104.8,0l-75.2,75.2c-28.9,28.9-28.9,75.9,0,104.8l33,33c28.9,28.9,75.9,28.9,104.8,0l75.2-75.2
+											c28.9-28.9,28.9-75.9,0-104.8l-1.9-1.9l53.9-53.9l2,2c28.9,28.9,75.9,28.9,104.8,0l75.2-75.2
+											C497.575,130.775,497.575,83.675,468.675,54.775z M205.675,317.575c12.9,12.9,12.9,33.9,0,46.9l-75.2,75.2
+											c-12.9,12.9-33.9,12.9-46.9,0l-33-33c-12.9-12.9-12.9-33.9,0-46.9l75.2-75.2c12.9-12.9,33.9-12.9,46.9,0l2,2l-32.6,32.6
+											c-8.3,8.3-8.3,20.8,0,29.2c4.2,4.2,9.4,6.3,14.6,6.3s10.4-2.1,14.6-6.3l32.6-32.6L205.675,317.575z M439.675,130.675l-75.2,75.2
+											c-12.9,12.9-33.9,12.9-46.9,0l-2-2l32.6-32.6c8.3-8.3,8.3-20.8,0-29.2s-20.8-8.3-29.2,0l-32.6,32.6l-1.9-1.9
+											c-12.9-12.9-12.9-33.9,0-46.9l75.2-75.2c12.9-12.9,33.9-12.9,46.9,0l33,33C452.675,96.675,452.675,117.675,439.675,130.675z"/>
+										</g>
+									</svg>
+		  						</button>
+								<button id="reset-state" class="btn btn-dark" type="button" onclick="handleResetClick();" title="Reset the map" data-toggle="tooltip" data-placement="bottom" data-html="true">
+									<svg version="1.1" width="32" height="32" viewBox="0 0 303.597 303.597" aria-hidden="true">
+										<g fill="#FFFFFF">
+											<path d="M57.866,268.881c25.982,19.891,56.887,30.403,89.369,30.402h0.002c6.545,0,13.176-0.44,19.707-1.308
+											c39.055-5.187,73.754-25.272,97.702-56.557c14.571-19.033,24.367-41.513,28.329-65.01c0.689-4.084-2.064-7.954-6.148-8.643
+											l-19.721-3.326c-1.964-0.33-3.974,0.131-5.595,1.284c-1.621,1.153-2.717,2.902-3.048,4.864
+											c-3.019,17.896-10.49,35.032-21.608,49.555c-18.266,23.861-44.73,39.181-74.521,43.137c-4.994,0.664-10.061,1-15.058,1
+											c-24.757,0-48.317-8.019-68.137-23.191c-23.86-18.266-39.18-44.73-43.136-74.519c-3.957-29.787,3.924-59.333,22.189-83.194
+											c21.441-28.007,54.051-44.069,89.469-44.069c24.886,0,48.484,7.996,68.245,23.122c6.55,5.014,12.43,10.615,17.626,16.754
+											l-36.934-6.52c-1.956-0.347-3.973,0.101-5.604,1.241c-1.631,1.141-2.739,2.882-3.085,4.841l-3.477,19.695
+											c-0.72,4.079,2.003,7.969,6.081,8.689l88.63,15.647c0.434,0.077,0.869,0.114,1.304,0.114c1.528,0,3.031-0.467,4.301-1.355
+											c1.63-1.141,2.739-2.882,3.084-4.841l15.646-88.63c0.721-4.079-2.002-7.969-6.081-8.69l-19.695-3.477
+											c-4.085-0.723-7.97,2.003-8.689,6.082l-6.585,37.3c-7.387-9.162-15.87-17.463-25.248-24.642
+											c-25.914-19.838-56.86-30.324-89.495-30.324c-46.423,0-89.171,21.063-117.284,57.787C6.454,93.385-3.878,132.123,1.309,171.178
+											C6.497,210.236,26.583,244.933,57.866,268.881z"/>
+										</g>
+									</svg>
+								</button>
+								<!--<button id="save-state" class="btn btn-success" type="button" onclick="handleSaveStateClick();" data-toggle="tooltip" data-placement="bottom" title="Save the current state of the map">
+									<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewBox="0 0 492 492" xml:space="preserve">
+										<g fill="#FFFFFF">
+											<path d="M465.064,207.566l0.028,0H284.436V27.25c0-14.84-12.016-27.248-26.856-27.248h-23.116
+											c-14.836,0-26.904,12.408-26.904,27.248v180.316H26.908c-14.832,0-26.908,12-26.908,26.844v23.248
+											c0,14.832,12.072,26.78,26.908,26.78h180.656v180.968c0,14.832,12.064,26.592,26.904,26.592h23.116
+											c14.84,0,26.856-11.764,26.856-26.592V284.438h180.624c14.84,0,26.936-11.952,26.936-26.78V234.41
+											C492,219.566,479.904,207.566,465.064,207.566z"/>
+										</g>
+									</svg>
+								</button>
+								<button id="prev-state" class="btn btn-dark" type="button" onclick="handlePrevStateClick();" data-toggle="tooltip" data-placement="bottom" title="Previous state">
+								<svg width="32" height="32" viewBox="0 -0.5 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="si-glyph si-glyph-arrow-left">
 								    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-								        <path d="M6.077,1.162 C6.077,1.387 6.139,1.612 6.273,1.812 L10.429,8.041 L6.232,14.078 C5.873,14.619 6.019,15.348 6.56,15.707 C7.099,16.068 7.831,15.922 8.19,15.382 L12.82,8.694 C13.084,8.3 13.086,7.786 12.822,7.39 L8.233,0.51 C7.873,-0.032 7.141,-0.178 6.601,0.181 C6.26,0.409 6.077,0.782 6.077,1.162 L6.077,1.162 Z" fill="#FFFFFF" class="si-glyph-fill"></path>
+								        <path d="M10.978,1.162 C10.978,1.387 10.916,1.612 10.782,1.812 L6.626,8.041 L10.823,14.078 C11.182,14.619 11.036,15.348 10.495,15.707 C9.956,16.068 9.224,15.922 8.865,15.382 L4.235,8.694 C3.971,8.3 3.969,7.786 4.233,7.39 L8.822,0.51 C9.182,-0.032 9.914,-0.178 10.454,0.181 C10.795,0.409 10.978,0.782 10.978,1.162 L10.978,1.162 Z" fill="#FFFFFF" class="si-glyph-fill"></path>
 								    </g>
-								</svg>
-							</button>
-						    <button id="button_section" type="button" class="btn btn-lg btn-light dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">State</button>
-						    <div id="scroll_dropmenu" class="dropdown-menu"></div>
-							<button id="delete-state" class="btn btn-dark" type="button" onclick="handleDeleteClick();">
-								<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewBox="0 0 492 492" xml:space="preserve">
-									<g fill="#FFFFFF">
-										<path d="M300.188,246L484.14,62.04c5.06-5.064,7.852-11.82,7.86-19.024c0-7.208-2.792-13.972-7.86-19.028L468.02,7.872
-										c-5.068-5.076-11.824-7.856-19.036-7.856c-7.2,0-13.956,2.78-19.024,7.856L246.008,191.82L62.048,7.872
-										c-5.06-5.076-11.82-7.856-19.028-7.856c-7.2,0-13.96,2.78-19.02,7.856L7.872,23.988c-10.496,10.496-10.496,27.568,0,38.052
-										L191.828,246L7.872,429.952c-5.064,5.072-7.852,11.828-7.852,19.032c0,7.204,2.788,13.96,7.852,19.028l16.124,16.116
-										c5.06,5.072,11.824,7.856,19.02,7.856c7.208,0,13.968-2.784,19.028-7.856l183.96-183.952l183.952,183.952
-										c5.068,5.072,11.824,7.856,19.024,7.856h0.008c7.204,0,13.96-2.784,19.028-7.856l16.12-16.116
-										c5.06-5.064,7.852-11.824,7.852-19.028c0-7.204-2.792-13.96-7.852-19.028L300.188,246z"/>
-									</g>
-								</svg>
-							</button>-->
-						</div>
-				    </div>
+								</svg></button>
+								<button id="next-state" class="btn btn-dark" type="button" onclick="handleNextStateClick();" data-toggle="tooltip" data-placement="bottom" title="Next state">
+									<svg width="32" height="32" viewBox="0.5 -0.5 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="si-glyph si-glyph-arrow-right">
+									    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+									        <path d="M6.077,1.162 C6.077,1.387 6.139,1.612 6.273,1.812 L10.429,8.041 L6.232,14.078 C5.873,14.619 6.019,15.348 6.56,15.707 C7.099,16.068 7.831,15.922 8.19,15.382 L12.82,8.694 C13.084,8.3 13.086,7.786 12.822,7.39 L8.233,0.51 C7.873,-0.032 7.141,-0.178 6.601,0.181 C6.26,0.409 6.077,0.782 6.077,1.162 L6.077,1.162 Z" fill="#FFFFFF" class="si-glyph-fill"></path>
+									    </g>
+									</svg>
+								</button>
+							    <button id="button_section" type="button" class="btn btn-lg btn-light dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">State</button>
+							    <div id="scroll_dropmenu" class="dropdown-menu"></div>
+								<button id="delete-state" class="btn btn-dark" type="button" onclick="handleDeleteClick();">
+									<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewBox="0 0 492 492" xml:space="preserve">
+										<g fill="#FFFFFF">
+											<path d="M300.188,246L484.14,62.04c5.06-5.064,7.852-11.82,7.86-19.024c0-7.208-2.792-13.972-7.86-19.028L468.02,7.872
+											c-5.068-5.076-11.824-7.856-19.036-7.856c-7.2,0-13.956,2.78-19.024,7.856L246.008,191.82L62.048,7.872
+											c-5.06-5.076-11.82-7.856-19.028-7.856c-7.2,0-13.96,2.78-19.02,7.856L7.872,23.988c-10.496,10.496-10.496,27.568,0,38.052
+											L191.828,246L7.872,429.952c-5.064,5.072-7.852,11.828-7.852,19.032c0,7.204,2.788,13.96,7.852,19.028l16.124,16.116
+											c5.06,5.072,11.824,7.856,19.02,7.856c7.208,0,13.968-2.784,19.028-7.856l183.96-183.952l183.952,183.952
+											c5.068,5.072,11.824,7.856,19.024,7.856h0.008c7.204,0,13.96-2.784,19.028-7.856l16.12-16.116
+											c5.06-5.064,7.852-11.824,7.852-19.028c0-7.204-2.792-13.96-7.852-19.028L300.188,246z"/>
+										</g>
+									</svg>
+								</button>-->
+							</div>
+							<div class="input-group-append">
+								<button id="picker-reset" class="btn btn-dark" type="button" onclick="handlePickerResetClick();" title="Reset a zone" data-toggle="tooltip" data-placement="bottom" data-html="true">
+									<svg version="1.1" width="40" height="40" viewBox="0 0 24 24" aria-hidden="true">
+										<g fill="#FFFFFF">
+											<path d="M15.8698693,2.66881311 L20.838395,7.63733874 C21.7170746,8.5160184 21.7170746,9.9406396 20.838395,10.8193193 L12.1565953,19.4998034 L18.25448,19.5 C18.6341758,19.5 18.947971,19.7821539 18.9976334,20.1482294 L19.00448,20.25 C19.00448,20.6296958 18.7223262,20.943491 18.3562506,20.9931534 L18.25448,21 L9.84446231,21.0012505 C9.22825282,21.0348734 8.60085192,20.8163243 8.13013068,20.345603 L3.16160505,15.3770774 C2.28292539,14.4983977 2.28292539,13.0737765 3.16160505,12.1950969 L12.6878888,2.66881311 C13.5665685,1.79013346 14.9911897,1.79013346 15.8698693,2.66881311 Z M11.6976366,17.7582967 L5.7429273,11.8035875 L4.23660183,13.2700937 C3.94370861,13.5629869 3.94370861,14.0378606 4.23660183,14.3307538 L9.1823612,19.2763813 C9.47983601,19.5646202 9.95465072,19.5571329 10.2428895,19.2596581 L11.6976366,17.7582967 Z"/>
+										</g>
+									</svg>
+								</button>
+		  						<button id="picker" class="btn btn-dark" type="button" onclick="handlePickerClick();" title="Pick the guild and assign the ownership of provinces" data-toggle="tooltip" data-placement="bottom" data-html="true">
+									<svg version="1.1" width="32" height="32" viewBox="0 0 36 36" aria-hidden="true">
+										<g fill="#FFFFFF">
+											<path d="M33.73,2.11a4.09,4.09,0,0,0-5.76.1L22.81,7.38a3.13,3.13,0,0,1-4.3.11L17.09,8.91,27,18.79l1.42-1.42A3.18,3.18,0,0,1,28.46,13l5.17-5.17A4.08,4.08,0,0,0,33.73,2.11Z" class="clr-i-solid clr-i-solid-path-1"/>
+											<path d="M22.18,16.79,7.46,31.51a2,2,0,1,1-2.82-2.83L19.35,14l-1.41-1.41L3.22,27.27a4,4,0,0,0-.68,4.8L1.06,33.55a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l1.44-1.44a3.93,3.93,0,0,0,2.09.6,4.06,4.06,0,0,0,2.88-1.2L23.6,18.21Z" class="clr-i-solid clr-i-solid-path-2"/>
+										</g>
+									</svg>
+								</button>
+								<!--<button id="picker-cancel" style="display:none;" class="btn btn-danger" type="button" onclick="handlePickerCancelClick();">
+									<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="32" height="32" viewBox="0 0 492 492" xml:space="preserve">
+										<g fill="#FFFFFF">
+											<path d="M300.188,246L484.14,62.04c5.06-5.064,7.852-11.82,7.86-19.024c0-7.208-2.792-13.972-7.86-19.028L468.02,7.872
+											c-5.068-5.076-11.824-7.856-19.036-7.856c-7.2,0-13.956,2.78-19.024,7.856L246.008,191.82L62.048,7.872
+											c-5.06-5.076-11.82-7.856-19.028-7.856c-7.2,0-13.96,2.78-19.02,7.856L7.872,23.988c-10.496,10.496-10.496,27.568,0,38.052
+											L191.828,246L7.872,429.952c-5.064,5.072-7.852,11.828-7.852,19.032c0,7.204,2.788,13.96,7.852,19.028l16.124,16.116
+											c5.06,5.072,11.824,7.856,19.02,7.856c7.208,0,13.968-2.784,19.028-7.856l183.96-183.952l183.952,183.952
+											c5.068,5.072,11.824,7.856,19.024,7.856h0.008c7.204,0,13.96-2.784,19.028-7.856l16.12-16.116
+											c5.06-5.064,7.852-11.824,7.852-19.028c0-7.204-2.792-13.96-7.852-19.028L300.188,246z"/>
+										</g>
+									</svg>
+								</button>-->
+								<!--<button id="selected-picker" class="btn btn-dark" type="button" onclick="handlePickerClick();" title="Pick the guild and assign ownership to provinces." data-toggle="tooltip" data-placement="bottom" data-html="true">
+									<svg version="1.1" width="32" height="32" viewBox="0 0 36 36" aria-hidden="true">
+										<g fill="#FFFFFF">
+											<path d="M33.73,2.11a4.09,4.09,0,0,0-5.76.1L22.81,7.38a3.13,3.13,0,0,1-4.3.11L17.09,8.91,27,18.79l1.42-1.42A3.18,3.18,0,0,1,28.46,13l5.17-5.17A4.08,4.08,0,0,0,33.73,2.11Z" class="clr-i-solid clr-i-solid-path-1"></path><path d="M22.18,16.79,7.46,31.51a2,2,0,1,1-2.82-2.83L19.35,14l-1.41-1.41L3.22,27.27a4,4,0,0,0-.68,4.8L1.06,33.55a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l1.44-1.44a3.93,3.93,0,0,0,2.09.6,4.06,4.06,0,0,0,2.88-1.2L23.6,18.21Z" class="clr-i-solid clr-i-solid-path-2"/>
+										</g>
+									</svg>
+								</button>-->
+		  					</div>
+					    </div>
+					</div>
 	  			</div>
 	  		</div>
+	  		<!--<div id="selector" class="row flex-fill">
+	  			<div class="col text-center">Points</div>
+	  			<div class="col text-center">
+	  				<h1 id="zone-label">Zone</h1>
+	  			</div>
+	  			<div class="col text-center">
+	  				<div class="container">
+	  					Buildings
+	  				</div>
+	  			</div>
+	  		</div>-->
 	  		<div id="map" class="row flex-fill">
 	  			<div class="col js-map text-center">
 		  			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1168.39 852.91">

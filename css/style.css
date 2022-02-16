@@ -39,12 +39,21 @@ body {
 
 .dropdown-menu {
 	max-height: 200px;
-    overflow-y: auto;
+  overflow-y: auto;
 }
 
 #scroll_dropmenu {
 	min-width: 300px;
 }
+
+#selector {
+	height: 30px;
+	color: #FFFFFF;
+}
+
+/*#zone-label {
+	color: #FFFFFF;
+}*/
 
 #map {
 	/*background-color:  gray;rgba(7, 52, 4, 0.8);*/
@@ -53,23 +62,9 @@ body {
 
 /* SVG map properties */
 .map-zone {
+	fill: white;
 	stroke: #d6d6d6;
 	stroke-width: .1rem;
-}
-
-.province {
-	fill: white;
-	fill-opacity: 0.2;
-}
-.province.js-hover {
-	fill-opacity: 0.4;
-}
-
-.province:not(.owner) {
-	fill-opacity: 0.6;
-}
-.province:not(.owner).js-hover {
-	fill-opacity: 0.8;
 }
 
 .guild0 {
@@ -135,11 +130,36 @@ body {
 	stroke: var(--guild7-color);
 }
 
+.province {
+	fill-opacity: 0.1;
+}
+.province.lock {
+	fill-opacity: 0.1;
+	stroke-width: 0rem;
+}
+.province.js-hover {
+	fill-opacity: 0.4;
+}
+.province:not(.owner) {
+	fill-opacity: 0.6;
+}
+.province.lock:not(.owner) {
+	fill-opacity: 0.5;
+	stroke-width: 0;
+	/*stroke-opacity: 0.3;*/
+}
+.province:not(.owner).js-hover {
+	fill-opacity: 0.8;
+}
+
 .guild {
 	fill-opacity: 0.8;
 }
 .guild.js-hover {
 	fill-opacity: 1;
+}
+.guild.lock {
+	fill-opacity: 0.5;
 }
 
 .footer {
