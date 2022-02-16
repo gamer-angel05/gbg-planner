@@ -37,7 +37,7 @@ class MapZone {
 
         MapZone.all.push(this);
     }
-
+    /* Class functions */
     static importZone = ({zone, owner, buildings}) => {
         /*  Get zone, reset class then apply new values
         */
@@ -94,7 +94,7 @@ class MapZone {
         MapZone.all.forEach(zone => !zone.path.classList.contains("guild") && zone.path.classList.remove("highlight"));
     }
 
-
+    /* Map zones functions */
     handleMouseEnter = () => {
         this.path.classList.add("js-hover");
     }
@@ -108,42 +108,49 @@ class MapZone {
     }
 
     handleClick = () => {
-        // Picker is active
         if (MapZone.isResetMode) {
             MapZone.resetZone(this);
             return
-        } else if (MapZone.isPickerMode && this.path.classList.contains("guild")) {
-            this.handlePickerClick();
-            return
-        }
 
-        // Set active tile
-        MapZone.all.forEach(zone => zone.path.classList.replace("js-active", "js-inactive"));
-        this.path.classList.replace("js-inactive", "js-active");
+        } else if (MapZone.isPickerMode) {
+            if (this.path.classList.contains("guild")) {
+                this.handlePickerClick();
+                return
 
-        //$("#zone-label").text(this.zoneId);
+            } else if (MapZone.picker) {
+                if (this.owner) this.path.classList.replace(this.owner, "owner");
+                this.owner = MapZone.picker;
+                this.path.classList.replace("owner", this.owner);
+                return
 
-        const zoneData = Zone.all.find(zone => this.zoneId === zone.id);
-
-        if (this.path.classList.contains("guild")) { 
+            }
+        } else if (this.path.classList.contains("guild")) { 
             // Guild tile
             let colorIndex = colors.indexOf(this.color);
             this.color = colors[colorIndex + 1 < colors.length ? colorIndex + 1 : 0];
             bodyStyles.setProperty("--" + this.path.classList[0] + "-color", this.color);
-        } else if (MapZone.picker) {
-            if (this.owner) this.path.classList.replace(this.owner, "owner");
-            this.owner = MapZone.picker;
-            this.path.classList.replace("owner", this.owner);
+
         } else if (!this.owner) {
             // Provinces owned by guilds
             this.owner = MapZone.guilds[0];
             this.path.classList.replace("owner", this.owner);
+
         } else {
             let guildIndex = MapZone.guilds.indexOf(this.owner);
             let newOwner = guildIndex + 1 > MapZone.guilds.length ? null : MapZone.guilds[guildIndex + 1];
             this.path.classList.replace(this.owner, newOwner || "owner");
             this.owner = newOwner;
         }
+
+
+
+        // Set active tile
+        /*MapZone.all.forEach(zone => zone.path.classList.replace("js-active", "js-inactive"));
+        this.path.classList.replace("js-inactive", "js-active");*/
+
+        //$("#zone-label").text(this.zoneId);
+
+        //const zoneData = Zone.all.find(zone => this.zoneId === zone.id);
 
 
         //let neighbors = zoneData.info["neighbors"];

@@ -133,6 +133,9 @@ body {
 .province {
 	fill-opacity: 0.1;
 }
+.province:not(.owner) {
+	fill-opacity: 0.6;
+}
 .province.lock {
 	fill-opacity: 0.1;
 	stroke-width: 0rem;
@@ -140,9 +143,6 @@ body {
 .province.lock:not(.owner) {
 	fill-opacity: 0.5;
 	stroke-width: 0;
-}
-.province:not(.owner):not(.highlight) {
-	fill-opacity: 0.6;
 }
 .province.highlight:not(.owner) {
 	fill-opacity: 0.7;

@@ -19,20 +19,22 @@ class Zones {
         MapZone.reset();
     }
 
-    resetMapZone() {
-        MapZone.isResetMode = true
-
+    selectMapZone() {
+        /*  Toggle the Select to individually modify a zone
+            and disable "picker mode"
+        */
+        if (MapZone.isPickerMode) this.togglePickerMapZones();
     }
 
-    togglePickerResetMode() {
+    toggleResetMode() {
         /*  Toggle the Erase to reset individual map zones
         */
         if (!MapZone.isResetMode) {
-            $("#picker-reset")[0].classList.replace("btn-dark", "btn-info");
+            $("#reset-mode")[0].classList.replace("btn-dark", "btn-info");
             MapZone.lockGuilds();
             MapZone.highlightProvinces();
         } else {
-            $("#picker-reset")[0].classList.replace("btn-info", "btn-dark");
+            $("#reset-mode")[0].classList.replace("btn-info", "btn-dark");
             MapZone.unlockGuilds();
             MapZone.dimProvinces();
         }
@@ -41,12 +43,15 @@ class Zones {
 
     togglePickerMapZones() {
         /*  Toggle the Picker to copy paste owner to multiple provinces
+            and disable "select mode"
         */
         if (!MapZone.isPickerMode) {
-            $("#picker")[0].classList.replace("btn-dark", "btn-info");
+            $("#picker-mode")[0].classList.replace("btn-dark", "btn-info");
+            $("#select-mode")[0].classList.replace("btn-info", "btn-dark");
             MapZone.lockProvinces()
         } else {
-            $("#picker")[0].classList.replace("btn-info", "btn-dark");
+            $("#picker-mode")[0].classList.replace("btn-info", "btn-dark");
+            $("#select-mode")[0].classList.replace("btn-dark", "btn-info");
             MapZone.unlockProvinces()
         }
         MapZone.picker = null;

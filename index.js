@@ -28,13 +28,16 @@ function updateHashMap() {
 	}
 }
 
+function handleSelectClick() {
+	zones.selectMapZone();
+}
 
 function handleResetClick() {
 	zones.resetMapZones();
 }
 
-function handlePickerResetClick() {
-	zones.togglePickerResetMode();
+function handleResetModeClick() {
+	zones.toggleResetMode();
 }
 
 function handlePickerClick() {
