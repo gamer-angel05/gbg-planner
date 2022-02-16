@@ -137,18 +137,20 @@ body {
 	fill-opacity: 0.1;
 	stroke-width: 0rem;
 }
-.province.js-hover {
-	fill-opacity: 0.4;
-}
-.province:not(.owner) {
-	fill-opacity: 0.6;
-}
 .province.lock:not(.owner) {
 	fill-opacity: 0.5;
 	stroke-width: 0;
-	/*stroke-opacity: 0.3;*/
 }
-.province:not(.owner).js-hover {
+.province:not(.owner):not(.highlight) {
+	fill-opacity: 0.6;
+}
+.province.highlight:not(.owner) {
+	fill-opacity: 0.7;
+}
+.province.js-hover {
+	fill-opacity: 0.3;
+}
+.province.js-hover:not(.owner) {
 	fill-opacity: 0.8;
 }
 

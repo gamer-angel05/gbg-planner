@@ -30,9 +30,11 @@ class Zones {
         if (!MapZone.isResetMode) {
             $("#picker-reset")[0].classList.replace("btn-dark", "btn-info");
             MapZone.lockGuilds();
+            MapZone.highlightProvinces();
         } else {
             $("#picker-reset")[0].classList.replace("btn-info", "btn-dark");
             MapZone.unlockGuilds();
+            MapZone.dimProvinces();
         }
         MapZone.isResetMode = !MapZone.isResetMode;
     }

@@ -86,6 +86,14 @@ class MapZone {
         MapZone.all.forEach(zone => !zone.path.classList.contains("guild") && zone.path.classList.remove("lock"));
     }
 
+    static highlightProvinces = () => {
+        MapZone.all.forEach(zone => !zone.path.classList.contains("guild") && zone.path.classList.add("highlight"));
+    }
+
+    static dimProvinces = () => {
+        MapZone.all.forEach(zone => !zone.path.classList.contains("guild") && zone.path.classList.remove("highlight"));
+    }
+
 
     handleMouseEnter = () => {
         this.path.classList.add("js-hover");
