@@ -366,3 +366,366 @@ var mapZones = [
 			"neighbors": ["A2A", "B2A", "C2A", "D2A", "E2A", "F2A"]
 		}
 	]
+
+var mapZones2 = [
+		{
+			"zone": "guild0",
+			"builds": 0,
+			"points": 0,
+			"neighbors": ["A4B", "A3V", "D4H"]
+		},
+		{
+			"zone": "guild1",
+			"builds": 0,
+			"points": 0,
+			"neighbors": ["A4D", "A4F", "A3Y"]
+		},
+		{
+			"zone": "guild2",
+			"builds": 0,
+			"points": 0,
+			"neighbors": ["A4H", "B3V", "B4B"]
+		},
+		{
+			"zone": "guild3",
+			"builds": 0,
+			"points": 0,
+			"neighbors": ["B4D", "B4F", "B3Y"]
+		},
+		{
+			"zone": "guild4",
+			"builds": 0,
+			"points": 0,
+			"neighbors": ["B4H", "C4B", "C3V"]
+		},
+		{
+			"zone": "guild5",
+			"builds": 0,
+			"points": 0,
+			"neighbors": ["C4D", "C4F", "C3Y"]
+		},
+		{
+			"zone": "guild6",
+			"builds": 0,
+			"points": 0,
+			"neighbors": ["C4H", "D4B", "D3V"]
+		},
+		{
+			"zone": "guild7",
+			"builds": 0,
+			"points": 0,
+			"neighbors": ["D4D", "D4F", "D3Y"]
+		},
+		{
+			"zone": "A3V",
+			"builds": 1,
+			"points": 63,
+			"neighbors": ["guild0", "A4B", "A3X", "A2S", "D3Z"]
+		},
+		{
+			"zone": "A2S",
+			"builds": 1,
+			"points": 98,
+			"neighbors": ["A3V", "A3X", "A2T", "A1M", "D2T"]
+		},
+		{
+			"zone": "A1M",
+			"builds": 3,
+			"points": 165,
+			"neighbors": ["A2S", "A2T", "B1O", "D1B"]
+		},
+		{
+			"zone": "A4B",
+			"builds": 1,
+			"points": 10,
+			"neighbors": ["guild0", "A4C", "A3V"]
+		},
+		{
+			"zone": "A4C",
+			"builds": 0,
+			"points": 14,
+			"neighbors": ["A4B", "A4D", "A3X"]
+		},
+		{
+			"zone": "A3X",
+			"builds": 1,
+			"points": 51,
+			"neighbors": ["A4C", "A4D", "A3Y", "A2S", "A3V"]
+		},
+		{
+			"zone": "A4D",
+			"builds": 1,
+			"points": 12,
+			"neighbors": ["guild1", "A3X", "A4C"]
+		},
+		{
+			"zone": "A4F",
+			"builds": 1,
+			"points": 33,
+			"neighbors": ["guild1", "A4G", "A3Y"]
+		},
+		{
+			"zone": "A3Y",
+			"builds": 2,
+			"points": 61,
+			"neighbors": ["guild1", "A4F", "A3Z", "A2T", "A3X"]
+		},
+		{
+			"zone": "A2T",
+			"builds": 2,
+			"points": 106,
+			"neighbors": ["A3Y", "A3Z", "B2S", "A1M", "A2S"]
+		},
+		{
+			"zone": "A4G",
+			"builds": 1,
+			"points": 10,
+			"neighbors": ["guild1", "A4H", "A3Z", "A4F"]
+		},
+		{
+			"zone": "A4H",
+			"builds": 1,
+			"points": 17,
+			"neighbors": ["guild2", "A4H", "B4B", "B3V"]
+		},
+		{
+			"zone": "A3Z",
+			"builds": 1,
+			"points": 40,
+			"neighbors": ["A4G", "A4H", "B3V", "A2T", "A3Y"]
+		},
+		{
+			"zone": "B4B",
+			"builds": 1,
+			"points": 28,
+			"neighbors": ["guild2", "B4C", "B3V"]
+		},
+		{
+			"zone": "B3V",
+			"builds": 1,
+			"points": 40,
+			"neighbors": ["A3Z", "guild2", "B4B", "B3X", "B2S"]
+		},
+		{
+			"zone": "B2S",
+			"builds": 1,
+			"points": 73,
+			"neighbors": ["A2T", "B3V", "B3X", "B2T", "B10"]
+		},
+		{
+			"zone": "B1O",
+			"builds": 3,
+			"points": 193,
+			"neighbors": ["A1M", "B2S", "B2T", "C1N"]
+		},
+		{
+			"zone": "B4C",
+			"builds": 0,
+			"points": 20,
+			"neighbors": ["B4B", "B4D", "B3X"]
+		},
+		{
+			"zone": "B4D",
+			"builds": 0,
+			"points": 28,
+			"neighbors": ["B4C", "guild3", "B3X"]
+		},
+		{
+			"zone": "B3X",
+			"builds": 1,
+			"points": 59,
+			"neighbors": ["B3V", "B4C", "B4D", "B3Y", "B2S"]
+		},
+		{
+			"zone": "B4F",
+			"builds": 1,
+			"points": 39,
+			"neighbors": ["guild3", "B4G", "B3Y"]
+		},
+		{
+			"zone": "B3Y",
+			"builds": 1,
+			"points": 74,
+			"neighbors": ["guild3", "B3X", "B4F", "B3Z", "B2T"]
+		},
+		{
+			"zone": "B4G",
+			"builds": 0,
+			"points": 10,
+			"neighbors": ["B4F", "B4H", "B3Z"]
+		},
+		{
+			"zone": "B3Z",
+			"builds": 2,
+			"points": 69,
+			"neighbors": ["B2T", "B3Y", "B4G", "B4H", "C3V"]
+		},
+		{
+			"zone": "B2T",
+			"builds": 1,
+			"points": 102,
+			"neighbors": ["B1O", "B2S", "B3Y", "B3Z", "C2S"]
+		},
+		{
+			"zone": "B4H",
+			"builds": 0,
+			"points": 13,
+			"neighbors": ["B3Z", "B4G", "guild4"]
+		},
+		{
+			"zone": "C4B",
+			"builds": 1,
+			"points": 40,
+			"neighbors": ["guild4", "C3V", "C4C"]
+		},
+		{
+			"zone": "C3V",
+			"builds": 1,
+			"points": 51,
+			"neighbors": ["guild4", "C2S", "B3Z", "C4B", "C3X"]
+		},
+		{
+			"zone": "C4C",
+			"builds": 0,
+			"points": 10,
+			"neighbors": ["C3X", "C4B", "C4D"]
+		},
+		{
+			"zone": "C4D",
+			"builds": 0,
+			"points": 22,
+			"neighbors": ["guild5", "C3X", "C4C"]
+		},
+		{
+			"zone": "C3X",
+			"builds": 1,
+			"points": 77,
+			"neighbors": ["C2S", "C3V", "C4C", "C4D", "C3Y"]
+		},
+		{
+			"zone": "C2S",
+			"builds": 3,
+			"points": 87,
+			"neighbors": ["C1N", "B2T", "C3V", "C3X", "C2T"]
+		},
+		{
+			"zone": "C1N",
+			"builds": 2,
+			"points": 128,
+			"neighbors": ["D1B", "B1O", "C2S", "C2T"]
+		},
+		{
+			"zone": "C4F",
+			"builds": 0,
+			"points": 33,
+			"neighbors": ["guild5", "C4G", "C3Y"]
+		},
+		{
+			"zone": "C3Y",
+			"builds": 2,
+			"points": 47,
+			"neighbors": ["guild5", "C3Z", "C2T", "C3X", "C4F"]
+		},
+		{
+			"zone": "C4G",
+			"builds": 1,
+			"points": 28,
+			"neighbors": ["C4H", "C3Z", "C4F"]
+		},
+		{
+			"zone": "C3Z",
+			"builds": 2,
+			"points": 77,
+			"neighbors": ["D3V", "C2T", "C3Y", "C4G", "C4H"]
+		},
+		{
+			"zone": "C4H",
+			"builds": 1,
+			"points": 24,
+			"neighbors": ["guild6", "C3Z", "C4G"]
+		},
+		{
+			"zone": "C2T",
+			"builds": 3,
+			"points": 107,
+			"neighbors": ["D2S", "C1N", "C2S", "C3Y", "C3Z"]
+		},
+		{
+			"zone": "D3V",
+			"builds": 1,
+			"points": 62,
+			"neighbors": ["guild6", "D3X", "D2S", "C3Z", "D4B"]
+		},
+		{
+			"zone": "D2S",
+			"builds": 2,
+			"points": 114,
+			"neighbors": ["D2T", "D1B", "C2T", "D3V", "D3X"]
+		},
+		{
+			"zone": "D1B",
+			"builds": 2,
+			"points": 119,
+			"neighbors": ["D2T", "A1M", "C1N", "D2S"]
+		},
+		{
+			"zone": "D4B",
+			"builds": 1,
+			"points": 24,
+			"neighbors": ["guild6", "D4C", "D3V"]
+		},
+		{
+			"zone": "D4C",
+			"builds": 0,
+			"points": 22,
+			"neighbors": ["D4D", "D3X", "D4B"]
+		},
+		{
+			"zone": "D3X",
+			"builds": 1,
+			"points": 62,
+			"neighbors": ["D3Y", "D2S", "D3V", "D4C", "D4D"]
+		},
+		{
+			"zone": "D4D",
+			"builds": 0,
+			"points": 20,
+			"neighbors": ["guild7", "D3X", "D4C"]
+		},
+		{
+			"zone": "D3Y",
+			"builds": 1,
+			"points": 70,
+			"neighbors": ["guild7", "D4F", "D3Z", "D2T", "D3X"]
+		},
+		{
+			"zone": "D2T",
+			"builds": 2,
+			"points": 92,
+			"neighbors": ["D3Y", "D3Z", "A2S", "D1B", "D2S"]
+		},
+		{
+			"zone": "D4F",
+			"builds": 0,
+			"points": 17,
+			"neighbors": ["guild7", "D4G", "D3Y"]
+		},
+		{
+			"zone": "D4G",
+			"builds": 1,
+			"points": 13,
+			"neighbors": ["D4H", "D3Z", "D3Y", "D4F"]
+		},
+		{
+			"zone": "D3Z",
+			"builds": 2,
+			"points": 80,
+			"neighbors": ["D4H", "A3V", "D2T", "D3Y", "D4G"]
+		},
+		{
+			"zone": "D4H",
+			"builds": 0,
+			"points": 15,
+			"neighbors": ["guild0", "D3Z", "D4G"]
+		}
+	]

@@ -42,8 +42,8 @@ class Zones {
     }
 
     togglePickerMapZones() {
-        /*  Toggle the Picker to copy paste owner to multiple provinces
-            and disable "select mode"
+        /*  Toggle between the picker and select mode
+            to copy paste owner to multiple provinces
         */
         if (!MapZone.isPickerMode) {
             $("#picker-mode")[0].classList.replace("btn-dark", "btn-info");

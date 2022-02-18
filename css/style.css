@@ -25,16 +25,17 @@ body {
 	background-color: rgba(16, 64, 13, 1);
 	/*background: url("../css/bg-xsmall.png") no-repeat center fixed;*/
 }
-
-#main {
-	max-width: 1200px;
-}
-
 .header {
 	background-color:  rgba(16, 64, 13, 0.5);
 	color: #FFFFFF;
-	padding-top: 10px;
-	padding-bottom: 5vh;
+	padding: 20px;
+	/*padding-top: 10px;
+	padding-bottom: 10px;*/
+}
+
+#main {
+	/*min-width: 50vw;*/
+	/*max-width: 40vw;*/
 }
 
 .dropdown-menu {
@@ -46,18 +47,16 @@ body {
 	min-width: 300px;
 }
 
-#selector {
-	height: 30px;
+#nav {
 	color: #FFFFFF;
+	padding: 10px;
 }
 
-/*#zone-label {
-	color: #FFFFFF;
-}*/
 
 #map {
 	/*background-color:  gray;rgba(7, 52, 4, 0.8);*/
 	min-height: 0; /* to enable flex on firefox */
+	padding: 20px;
 }
 
 /* SVG map properties */
@@ -153,6 +152,14 @@ body {
 .province.js-hover:not(.owner) {
 	fill-opacity: 0.8;
 }
+.province.js-active {
+	fill-opacity: 0.3;
+	stroke-width: 0.3rem;
+}
+.province.js-active:not(.owner) {
+	fill-opacity: 0.8;
+	stroke-width: 0.3rem;
+}
 
 .guild {
 	fill-opacity: 0.8;
@@ -181,13 +188,13 @@ body {
 	min-width: 50px;
 }
 
-h2 {
+/*h2 {
 	padding-bottom: 10px;
 }
 
 h4 {
 	padding-top: 5px;
-}
+}*/
 
 
 p, h2, h4 {
@@ -200,4 +207,19 @@ a {
 
 a:hover {
 	color: #88ebb2;
+}
+
+.js-map {
+	width: 500px;
+}
+
+/* navigation */
+#label-section {
+	border-left: 1px solid white;
+	border-right: 1px solid white;
+	max-width: 150px;
+}
+
+#label-zone {
+	font-weight: 600;
 }

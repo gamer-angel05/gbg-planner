@@ -121,7 +121,6 @@ class MapZone {
                 if (this.owner) this.path.classList.replace(this.owner, "owner");
                 this.owner = MapZone.picker;
                 this.path.classList.replace("owner", this.owner);
-                return
 
             }
         } else if (this.path.classList.contains("guild")) { 
@@ -130,7 +129,7 @@ class MapZone {
             this.color = colors[colorIndex + 1 < colors.length ? colorIndex + 1 : 0];
             bodyStyles.setProperty("--" + this.path.classList[0] + "-color", this.color);
 
-        } else if (!this.owner) {
+        /*} else if (!this.owner) {
             // Provinces owned by guilds
             this.owner = MapZone.guilds[0];
             this.path.classList.replace("owner", this.owner);
@@ -139,24 +138,22 @@ class MapZone {
             let guildIndex = MapZone.guilds.indexOf(this.owner);
             let newOwner = guildIndex + 1 > MapZone.guilds.length ? null : MapZone.guilds[guildIndex + 1];
             this.path.classList.replace(this.owner, newOwner || "owner");
-            this.owner = newOwner;
+            this.owner = newOwner;*/
         }
 
-
+        const zoneData = Zone.all.find(zone => this.zoneId === zone.id)
+        
+        $("#label-zone").text(zoneData.id);
+        $("#label-points").text(zoneData.info.points + " pts");
 
         // Set active tile
-        /*MapZone.all.forEach(zone => zone.path.classList.replace("js-active", "js-inactive"));
-        this.path.classList.replace("js-inactive", "js-active");*/
-
-        //$("#zone-label").text(this.zoneId);
-
-        //const zoneData = Zone.all.find(zone => this.zoneId === zone.id);
+        MapZone.all.forEach(zone => zone.path.classList.remove("js-active"));
+        this.path.classList.add("js-active");
 
 
         //let neighbors = zoneData.info["neighbors"];
         //console.log(neighbors);
 
-        //const zoneData = Zone.all.find(zone => this.zoneId === zone.id);
         //zoneInfo.attachToDom();
 
         //Display exhibits
