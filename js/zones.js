@@ -42,6 +42,7 @@ class Zones {
         if (!selected) return;
 
         let swatch = event.currentTarget;
+        MapZone.guilds.forEach(guild => $("." + guild + ".swatch")[0].classList.remove("swatch-active"));
         swatch.classList.add("swatch-active");
         
         if (selected.owner) selected.path.classList.replace(selected.owner, "owner");
@@ -52,7 +53,7 @@ class Zones {
     handleSwatchEnter = (event) => {
         let selected = MapZone.selected;
         if (!selected) return;
-        
+
         event.currentTarget.classList.add("js-hover");
     }
     handleSwatchLeave = (event) => {
