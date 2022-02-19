@@ -47,16 +47,58 @@ body {
 	min-width: 300px;
 }
 
-#nav {
-	color: #FFFFFF;
-	padding: 10px;
-}
-
 
 #map {
 	/*background-color:  gray;rgba(7, 52, 4, 0.8);*/
 	min-height: 0; /* to enable flex on firefox */
 	padding: 20px;
+}
+
+/* Navigation */
+#nav {
+	color: #FFFFFF;
+	/*padding: 10px;*/
+	/*max-width: 750px;*/
+}
+
+#label-section {
+	border-right: 1px solid white;
+}
+
+#label-zone {
+	font-weight: 600;
+}
+
+#label-points {
+	/*font-size: 20px;*/
+}
+
+#owner-section {
+	opacity: 0.5;
+}
+
+#owner-section tr td{
+  padding: 0.5px !important;
+  margin: 0 !important;
+}
+
+#buildings-section {
+	display: none;
+}
+
+#buildings-table {
+	height: 75px;
+}
+
+.swatch {
+	fill-opacity: 0.8;
+}
+.swatch.js-hover {
+	fill-opacity: 1;
+}
+.swatch-active {
+	stroke-width: .1rem;
+	stroke: white;
 }
 
 /* SVG map properties */
@@ -209,17 +251,3 @@ a:hover {
 	color: #88ebb2;
 }
 
-.js-map {
-	width: 500px;
-}
-
-/* navigation */
-#label-section {
-	border-left: 1px solid white;
-	border-right: 1px solid white;
-	max-width: 150px;
-}
-
-#label-zone {
-	font-weight: 600;
-}

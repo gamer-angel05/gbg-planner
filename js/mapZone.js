@@ -8,6 +8,7 @@ class MapZone {
   static all = [];
   static mapContainer = document.querySelector(".js-map");
   static picker = null;
+  static selected = null;
   static isPickerMode = false;
   static isResetMode = false;
 
@@ -37,6 +38,7 @@ class MapZone {
 
         MapZone.all.push(this);
     }
+
     /* Class functions */
     static importZone = ({zone, owner, buildings}) => {
         /*  Get zone, reset class then apply new values
@@ -128,6 +130,14 @@ class MapZone {
             let colorIndex = colors.indexOf(this.color);
             this.color = colors[colorIndex + 1 < colors.length ? colorIndex + 1 : 0];
             bodyStyles.setProperty("--" + this.path.classList[0] + "-color", this.color);
+            return
+
+        } else if (MapZone.selected === this) {
+            // Selected same tile already selected, deselected then.
+            this.removeActive()
+            return
+
+        }
 
         /*} else if (!this.owner) {
             // Provinces owned by guilds
@@ -139,17 +149,8 @@ class MapZone {
             let newOwner = guildIndex + 1 > MapZone.guilds.length ? null : MapZone.guilds[guildIndex + 1];
             this.path.classList.replace(this.owner, newOwner || "owner");
             this.owner = newOwner;*/
-        }
 
-        const zoneData = Zone.all.find(zone => this.zoneId === zone.id)
-        
-        $("#label-zone").text(zoneData.id);
-        $("#label-points").text(zoneData.info.points + " pts");
-
-        // Set active tile
-        MapZone.all.forEach(zone => zone.path.classList.remove("js-active"));
-        this.path.classList.add("js-active");
-
+        this.setupActive()
 
         //let neighbors = zoneData.info["neighbors"];
         //console.log(neighbors);
@@ -165,5 +166,37 @@ class MapZone {
 
         //Display button to get to top of page
         //document.querySelector(".js-to-top").style.display = "block";
+    }
+
+    setupActive = () => {
+        /* Set active zone
+        */
+        const zoneData = Zone.all.find(zone => this.zoneId === zone.id);
+        
+        $("#label-zone").text(zoneData.id);
+        $("#label-points").text(zoneData.info.points + " pts");
+
+        MapZone.guilds.forEach(guild => $("." + guild + ".swatch")[0].classList.remove("swatch-active"));
+
+        if (this.owner) {
+            $("." + this.owner + ".swatch")[0].classList.add("swatch-active");
+        }
+
+        MapZone.selected = this;
+        MapZone.all.forEach(zone => zone.path.classList.remove("js-active"));
+        this.path.classList.add("js-active");
+        $("#owner-section").css("opacity", "1.0");
+    }
+
+    removeActive = () => {
+        /*  Reset to no active zone
+        */
+        MapZone.guilds.forEach(guild => $("." + guild + ".swatch")[0].classList.remove("swatch-active"));
+        MapZone.all.forEach(zone => zone.path.classList.remove("js-active"));
+        $("#label-zone").text("Zone");
+        $("#label-points").text("Points");
+        $("#owner-section").css("opacity", "0.5");
+        $("#buildings-section").css("display", "none");
+        MapZone.selected = null;
     }
 }

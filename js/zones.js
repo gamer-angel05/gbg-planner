@@ -1,6 +1,13 @@
 class Zones {
     constructor() {
         this.mapData = mapZones; // get from /data.js
+        
+        const swatchGroups = document.querySelectorAll(".swatch");
+        swatchGroups.forEach(group => {
+            group.addEventListener('click', this.handleSwatchClick);
+            group.addEventListener('mouseenter', this.handleSwatchEnter);
+            group.addEventListener('mouseleave', this.handleSwatchLeave);
+        });
     }
 
     setupZonesWithMap(mapGroups) {
@@ -24,6 +31,32 @@ class Zones {
             and disable "picker mode"
         */
         if (MapZone.isPickerMode) this.togglePickerMapZones();
+    }
+
+    /* Swatches */
+    handleSwatchClick = (event) => {
+        /*  When a swatch is selected, while a zone is selected
+            change the zone to the new owner.
+        */
+        let selected = MapZone.selected;
+        if (!selected) return;
+
+        let swatch = event.currentTarget;
+        swatch.classList.add("swatch-active");
+        
+        if (selected.owner) selected.path.classList.replace(selected.owner, "owner");
+        
+        selected.owner = swatch.classList[0];
+        selected.path.classList.replace("owner", selected.owner);
+    }
+    handleSwatchEnter = (event) => {
+        let selected = MapZone.selected;
+        if (!selected) return;
+        
+        event.currentTarget.classList.add("js-hover");
+    }
+    handleSwatchLeave = (event) => {
+        event.currentTarget.classList.remove("js-hover");
     }
 
     toggleResetMode() {
