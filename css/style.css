@@ -59,6 +59,7 @@ body {
 	color: #FFFFFF;
 	/*padding: 10px;*/
 	/*max-width: 750px;*/
+	opacity: 0.5;
 }
 
 #label-section {
@@ -73,20 +74,12 @@ body {
 	/*font-size: 20px;*/
 }
 
-#owner-section {
-	opacity: 0.5;
-}
-
 #owner-section tr td{
   padding: 0.5px !important;
   margin: 0 !important;
 }
 
 #buildings-section {
-	display: none;
-}
-
-#buildings-table {
 	height: 75px;
 }
 

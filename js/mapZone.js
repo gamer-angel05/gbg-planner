@@ -114,6 +114,11 @@ class MapZone {
             MapZone.resetZone(this);
             return
 
+        } else if (MapZone.selected === this) {
+            // Selected same tile already selected, deselected then.
+            this.removeActive()
+            return
+
         } else if (MapZone.isPickerMode) {
             if (this.path.classList.contains("guild")) {
                 this.handlePickerClick();
@@ -130,11 +135,6 @@ class MapZone {
             let colorIndex = colors.indexOf(this.color);
             this.color = colors[colorIndex + 1 < colors.length ? colorIndex + 1 : 0];
             bodyStyles.setProperty("--" + this.path.classList[0] + "-color", this.color);
-            return
-
-        } else if (MapZone.selected === this) {
-            // Selected same tile already selected, deselected then.
-            this.removeActive()
             return
 
         }
@@ -185,7 +185,7 @@ class MapZone {
         MapZone.selected = this;
         MapZone.all.forEach(zone => zone.path.classList.remove("js-active"));
         this.path.classList.add("js-active");
-        $("#owner-section").css("opacity", "1.0");
+        $("#nav").css("opacity", "1.0");
     }
 
     removeActive = () => {
@@ -195,8 +195,7 @@ class MapZone {
         MapZone.all.forEach(zone => zone.path.classList.remove("js-active"));
         $("#label-zone").text("Zone");
         $("#label-points").text("Points");
-        $("#owner-section").css("opacity", "0.5");
-        $("#buildings-section").css("display", "none");
+        $("#nav").css("opacity", "0.5");
         MapZone.selected = null;
     }
 }
