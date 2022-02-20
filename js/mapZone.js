@@ -57,7 +57,7 @@ class MapZone {
     }
 
     static resetZone = (zone) => {
-        if (!zone.path.classList.contains("guild") && zone.owner) {
+        if (!zone.path.classList.contains("guild")) {
             zone.path.classList.replace(zone.owner, "owner");
             zone.owner = null;
             zone.buildings = 0;
