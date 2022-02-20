@@ -38,6 +38,10 @@ body {
 	/*max-width: 40vw;*/
 }
 
+.input-group button {
+	width: 60px;
+}
+
 .dropdown-menu {
 	max-height: 200px;
   overflow-y: auto;
@@ -49,7 +53,6 @@ body {
 
 
 #map {
-	/*background-color:  gray;rgba(7, 52, 4, 0.8);*/
 	min-height: 0; /* to enable flex on firefox */
 	padding: 20px;
 }
@@ -70,17 +73,15 @@ body {
 	font-weight: 600;
 }
 
-#label-points {
-	/*font-size: 20px;*/
-}
-
 #owner-section tr td{
   padding: 0.5px !important;
   margin: 0 !important;
 }
 
 #buildings-section {
-	height: 75px;
+	/*height: 100px;*/
+	padding: 0;
+	margin:  0;
 }
 
 .swatch {
@@ -93,6 +94,22 @@ body {
 	stroke-width: .1rem;
 	stroke: white;
 }
+
+.build {
+	padding: 20px;
+}
+
+.siege-camp {
+	content:url("../css/siege_camp.png");
+	width: 80px;
+	padding: 0;
+}
+.watchtower {
+	content: url("../css/watchtower.png");
+	width: 80px;
+	padding: 0;
+}
+
 
 /* SVG map properties */
 .map-zone {

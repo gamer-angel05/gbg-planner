@@ -110,6 +110,7 @@ class MapZone {
     }
 
     handleClick = () => {
+
         if (MapZone.isResetMode) {
             MapZone.resetZone(this);
             return
@@ -171,8 +172,9 @@ class MapZone {
     setupActive = () => {
         /* Set active zone
         */
+        if (MapZone.selected) this.removeActive();
+
         const zoneData = Zone.all.find(zone => this.zoneId === zone.id);
-        
         $("#label-zone").text(zoneData.id);
         $("#label-points").text(zoneData.info.points + " pts");
 
@@ -180,6 +182,21 @@ class MapZone {
 
         if (this.owner) {
             $("." + this.owner + ".swatch")[0].classList.add("swatch-active");
+        }
+        for (let i = 3 - zoneData.info.builds || 0; i; i--) {
+            $("#build" + (3 - i)).css("display", "none");
+        }
+        let builds = this.buildings;
+        let siegeCamps = Math.floor(builds / 10);
+        let watchtowers = builds - (siegeCamps * 10);
+        for (let i = 0; i < (builds); i++) {
+            if (siegeCamps) {
+                $("#build" + i)[0].classList.add("siege-camp");
+                siegeCamps -= 1;
+            } else if (watchtowers) {
+                $("#build" + i)[0].classList.add("watchtower");
+                watchtowers -= 1;
+            }
         }
 
         MapZone.selected = this;
@@ -193,6 +210,12 @@ class MapZone {
         */
         MapZone.guilds.forEach(guild => $("." + guild + ".swatch")[0].classList.remove("swatch-active"));
         MapZone.all.forEach(zone => zone.path.classList.remove("js-active"));
+        for (let i = 0; i < 3; i++) {
+            let build = $("#build" + i)
+            build.css("display", "");
+            build[0].classList.remove("siege-camp");
+            build[0].classList.remove("watchtower");
+        }
         $("#label-zone").text("Zone");
         $("#label-points").text("Points");
         $("#nav").css("opacity", "0.5");
