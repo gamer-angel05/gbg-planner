@@ -61,6 +61,7 @@ class MapZone {
             zone.path.classList.replace(zone.owner, "owner");
             zone.owner = null;
             zone.buildings = 0;
+            MapZone.removeActive();
         }
     }
 
@@ -117,7 +118,7 @@ class MapZone {
 
         } else if (MapZone.selected === this) {
             // Selected same tile already selected, deselected then.
-            this.removeActive()
+            MapZone.removeActive()
             return
 
         } else if (MapZone.isPickerMode) {
@@ -172,7 +173,7 @@ class MapZone {
     setupActive = () => {
         /* Set active zone
         */
-        if (MapZone.selected) this.removeActive();
+        if (MapZone.selected) MapZone.removeActive();
 
         const zoneData = Zone.all.find(zone => this.zoneId === zone.id);
         $("#label-zone").text(zoneData.id);
@@ -205,7 +206,7 @@ class MapZone {
         $("#nav").css("opacity", "1.0");
     }
 
-    removeActive = () => {
+    static removeActive = () => {
         /*  Reset to no active zone
         */
         MapZone.guilds.forEach(guild => $("." + guild + ".swatch")[0].classList.remove("swatch-active"));
