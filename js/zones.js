@@ -145,7 +145,8 @@ class Zones {
         })
 
         if (hash.endsWith("&")) hash = hash.slice(0, -1);
-
+        hash = encodeURIComponent(hash);
+        
         return hash;
     }
 }
