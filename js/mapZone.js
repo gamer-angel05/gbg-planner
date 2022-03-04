@@ -1,4 +1,4 @@
-const colors = ["#df42ae", "#9d26e1", "#262dd8", "#b8aea7", "#14bcbb", "#b4bf12", "#18ba13", "#c4282a", "#000000"] // [pink,purple,blue,gray,teal,yellow,green,red,black]
+const colors = ["#df42ae", "#9d26e1", "#262dd8", "#b8aea7", "#14bcbb", "#b4bf12", "#18ba13", "#c4282a", "#f37231"] // [pink,purple,blue,gray,teal,yellow,green,red,black]
 const bodyStyles = document.body.style;
 
 
