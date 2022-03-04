@@ -141,17 +141,6 @@ class MapZone {
 
         }
 
-        /*} else if (!this.owner) {
-            // Provinces owned by guilds
-            this.owner = MapZone.guilds[0];
-            this.path.classList.replace("owner", this.owner);
-
-        } else {
-            let guildIndex = MapZone.guilds.indexOf(this.owner);
-            let newOwner = guildIndex + 1 > MapZone.guilds.length ? null : MapZone.guilds[guildIndex + 1];
-            this.path.classList.replace(this.owner, newOwner || "owner");
-            this.owner = newOwner;*/
-
         this.setupActive()
 
         //let neighbors = zoneData.info["neighbors"];
@@ -184,9 +173,9 @@ class MapZone {
         if (this.owner) {
             $("." + this.owner + ".swatch")[0].classList.add("swatch-active");
         }
-        for (let i = 3 - zoneData.info.builds || 0; i; i--) {
+        /*for (let i = 3 - zoneData.info.builds || 0; i; i--) {
             $("#build" + (3 - i)).css("display", "none");
-        }
+        }*/
         let builds = this.buildings;
         let siegeCamps = Math.floor(builds / 10);
         let watchtowers = builds - (siegeCamps * 10);
