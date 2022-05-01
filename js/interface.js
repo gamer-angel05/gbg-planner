@@ -187,11 +187,11 @@ class Interface {
 
         let displayed = $('#picker-mode').css('display') === 'block' ? '#picker-mode' : '#progress-mode';
 
-        if ($(displayed)[0].classList.contains('btn-dark')) {
+        if ($(displayed)[0].classList.contains('btn-dark')) { // We are coming from select mode
             $(displayed)[0].classList.replace('btn-dark', 'btn-info');
 
-            this.isPickerMode = displayed.includes('picker') ? false : true;
-        } else {
+            this.isPickerMode = displayed.includes('picker') ? false : true; // it will be reversed later in the function
+        } else { // Toggle between picker and progress mode
             let mode = $(!this.isPickerMode ? '#picker-mode' : '#progress-mode')
             let otherMode = $(this.isPickerMode ? '#picker-mode' : '#progress-mode')
 
@@ -220,10 +220,16 @@ class Interface {
             
             return;
 
+        } else if (event.target === this.target) {
+            // Selected same tile already selected, deselected then.
+            this.deselectZone();
+            
+            return;
+
         } else if (this.isPickerMode || this.isProgressMode) {
             if (selected.path.classList.contains('guild')) {
                 this.picker = selected.owner;
-                return
+                return;
 
             } else if (this.picker) {
                 if (this.isPickerMode) {
@@ -231,16 +237,10 @@ class Interface {
                     selected.owner = this.picker;
                     selected.path.classList.replace('owner', selected.owner);
                 } else {
-                    console.log(this.picker);
                     selected.updateProgress(this.picker.slice(-1), 1);
                     selected.updateChart();
                 }
             }
-        } else if (event.target === this.target) {
-            // Selected same tile already selected, deselected then.
-            this.deselectZone();
-            
-            return;
         }
 
         if (selected.path.classList.contains('guild')) {
@@ -250,7 +250,7 @@ class Interface {
         } else if (this.selected) {
             this.resetSwatches();
             this.resetBuilds();
-            this.selected.deselect()
+            this.selected.deselect();
             Zones.removeWarn();
         }
         
