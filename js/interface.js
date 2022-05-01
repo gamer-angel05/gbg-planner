@@ -183,17 +183,22 @@ class Interface {
         /*  Toggle between the picker, the progress
             to copy paste owner to multiple provinces
         */
-        let pickerMode = $('#picker-mode');
-        let progressMode = $('#progress-mode');
-
         $('#select-mode')[0].classList.replace('btn-info', 'btn-dark');
 
-        let mode = $(!this.isPickerMode ? '#picker-mode' : '#progress-mode')
-        let otherMode = $(this.isPickerMode ? '#picker-mode' : '#progress-mode')
+        let displayed = $('#picker-mode').css('display') === 'block' ? '#picker-mode' : '#progress-mode';
 
-        otherMode.css('display', 'none');
-        mode[0].classList.replace('btn-dark', 'btn-info');
-        mode.css('display', 'block');
+        if ($(displayed)[0].classList.contains('btn-dark')) {
+            $(displayed)[0].classList.replace('btn-dark', 'btn-info');
+
+            this.isPickerMode = displayed.includes('picker') ? false : true;
+        } else {
+            let mode = $(!this.isPickerMode ? '#picker-mode' : '#progress-mode')
+            let otherMode = $(this.isPickerMode ? '#picker-mode' : '#progress-mode')
+
+            otherMode.css('display', 'none');
+            mode[0].classList.replace('btn-dark', 'btn-info');
+            mode.css('display', 'block');
+        }
         Zones.lockProvinces();
 
         this.isPickerMode = !this.isPickerMode;
@@ -204,9 +209,7 @@ class Interface {
         /*  Set up the properties for the interface.
         */
         const target = event.target;
-        //console.log(target)
         const selected = Zones.all.find(zone => target.classList.contains(zone.zoneId.toLowerCase()));
-        //console.log(selected);
 
         if (this.isResetMode) {
             if (this.selected) this.deselectZone();
