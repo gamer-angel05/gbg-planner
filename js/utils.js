@@ -11,3 +11,9 @@ function copyToClipboard(text) {
     document.body.removeChild(dummy);
 }
 
+
+// this is a utility function to fetch the variables from the CSS
+function cssvar(name) {
+  return getComputedStyle(document.documentElement).getPropertyValue(name);
+}
+

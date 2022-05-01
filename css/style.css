@@ -37,6 +37,10 @@ body {
 	/*max-width: 40vw;*/
 }
 
+.text {
+	color: red;
+}
+
 .input-group button {
 	width: 60px;
 }
@@ -51,9 +55,16 @@ body {
 }
 
 
-#map {
+.map {
 	min-height: 0; /* to enable flex on firefox */
-	padding: 20px;
+	padding: 15px;
+}
+
+#map-volcano {
+	display: none;
+}
+#button-waterfalls {
+	display: none;
 }
 
 /* Navigation */
@@ -67,12 +78,11 @@ body {
 #label-section {
 	border-right: 1px solid white;
 }
-
 #label-zone {
 	font-weight: 600;
 }
 
-#owner-section tr td{
+#owner-section tr td, #progress-section tr td{
   padding: 0.5px !important;
   margin: 0 !important;
 }
@@ -116,9 +126,24 @@ body {
 /* SVG map properties */
 .map-zone {
 	fill: white;
-	stroke: #d6d6d6;
-	stroke-width: .1rem;
+	stroke: #ededed;
 }
+#map-volcano {
+	stroke-width: .12rem;
+}
+#map-waterfalls {
+	stroke-width: .06rem;
+}
+#map-waterfalls canvas {
+	width: 50px;
+	height: 100px;
+	/*display: none;*/
+}
+
+foreignObject {
+	pointer-events: none;
+}
+
 
 .guild0 {
 	fill: var(--guild0-color);
@@ -187,7 +212,7 @@ body {
 	fill-opacity: 0.1;
 }
 .province:not(.owner) {
-	fill-opacity: 0.6;
+	fill-opacity: 0.65;
 }
 .province.lock {
 	fill-opacity: 0.1;
@@ -208,11 +233,15 @@ body {
 }
 .province.js-active {
 	fill-opacity: 0.3;
-	stroke-width: 0.3rem;
 }
 .province.js-active:not(.owner) {
 	fill-opacity: 0.8;
-	stroke-width: 0.3rem;
+}
+#map-volcano .js-active {
+	stroke-width: .25rem;
+}
+#map-waterfalls .js-active {
+	stroke-width: .15rem;
 }
 
 .guild {
@@ -250,6 +279,13 @@ h4 {
 	padding-top: 5px;
 }*/
 
+#progress-mode {
+	display: none;
+}
+
+#progress-mode-rect {
+	fill: none;
+}
 
 p, h2, h4 {
 	color:  #FFFFFF;
@@ -261,5 +297,19 @@ a {
 
 a:hover {
 	color: #88ebb2;
+}
+
+@keyframes blink {
+  100%,
+  0% {
+    fill-opacity: 0.3;
+  }
+  60% {
+    fill-opacity: 0.6;
+  }
+}
+
+.warn {
+  animation: blink 3s infinite;
 }
 

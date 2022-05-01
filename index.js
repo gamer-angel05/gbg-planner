@@ -1,6 +1,10 @@
 const zones = new Zones();
-const mapGroups = document.querySelectorAll(".map-group");
+const interface = new Interface();
 
+
+function handleMapClick() {
+	interface.handleSwitchMap();
+}
 
 function handleCopyClick() {
 	copyToClipboard(window.location.href.split("#")[0] + "#" + zones.hashZones());
@@ -30,19 +34,19 @@ function updateHashMap() {
 }
 
 function handleSelectClick() {
-	zones.selectMapZone();
+	interface.selectMapZone();
 }
 
 function handleResetClick() {
-	zones.resetMapZones();
+	interface.resetMap();
 }
 
 function handleResetModeClick() {
-	zones.toggleResetMode();
+	interface.toggleResetMode();
 }
 
 function handlePickerClick() {
-	zones.togglePickerMapZones();
+	interface.togglePickerMapZones();
 }
 
 
@@ -50,7 +54,6 @@ function __init__() {
 	/*	Setup and load the map if needed
 	*/
 	$('[data-toggle="tooltip"]').tooltip({trigger : 'hover'});
-	zones.setupZonesWithMap(mapGroups);
 	updateHashMap();
 	window.onhashchange = updateHashMap;
 }

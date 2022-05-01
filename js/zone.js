@@ -1,54 +1,115 @@
-class Zone {
+class MapZone {
 
-  static all = [];
-  static container = document.querySelector(".js-zone-info");
+  static picker = null;
+  static isPickerMode = false;
 
-  constructor(newZone) {
-    this.id = newZone["zone"];
-    this.info = newZone;
-    this.name = this.id;
+    constructor(mapGroup, zone, data) {
+        this.element = mapGroup;
+        this.path = zone;
+        this.path.dataset['id'] = data.zone;
+        this.data = data;
+        this.zoneId = data.zone;
+        this.inProgress = [0, 0, 0, 0, 0, 0, 0, 0];
+        this.buildings = 0;
 
-    this.nameAsClass = this.name.replace(/'/g, "").replace(/ /g, '-').toLowerCase();
-    this.mapElement = document.querySelector(`.${this.nameAsClass}`);
-    this.mapElement.dataset["id"] = this.id;
+        if (this.path.classList.contains('guild')) {
+            this.owner = this.path.classList[1];
+        }
 
-    Zone.all.push(this);
-  }
+        this.addChart();
 
-  attractions() {
-    return Attraction.all.filter(att => parseInt(att.zoneId, 10) === this.id);
-  }
-
-  renderAttractionList(attractions) {
-    const header = document.createElement("h2");
-    const list = document.createElement("ul");
-
-    header.innerText = "Attractions";
-
-    attractions.forEach(att => {
-      list.appendChild(att.renderAsLi());
-    })
-
-    Zone.container.appendChild(header);
-    Zone.container.appendChild(list);
-  }
-
-  attachToDom() {
-    Zone.container.parentElement.classList.add("zone-selected");
-    Zone.container.innerHTML = "";
-
-    Zone.container.style.backgroundColor = `var(--${this.nameAsClass}-primary)`;
-
-    const name = document.createElement("h1");
-    name.innerText = this.name;
-    Zone.container.appendChild(name);
-
-    const desc = document.createElement("p");
-    desc.innerText = this.description;
-    Zone.container.appendChild(desc);
-
-    if (this.attractions().length !== 0) {
-      this.renderAttractionList(this.attractions());
+        this.element.addEventListener('click', this.handleClick);
+        this.element.addEventListener('mouseenter', this.handleMouseEnter);
+        this.element.addEventListener('mouseleave', this.handleMouseLeave);
     }
-  }
+
+    /* Class functions */
+    static importZone = ({zone, owner, buildings}) => {
+        /*  Get zone, reset class then apply new values
+        */
+        let data = MapZone.all.find(e => e.zoneId === zone);
+
+        if (data.owner) data.path.classList.replace(data.owner, "owner");
+        
+        data.owner = "guild" + owner;
+        data.buildings = buildings;
+        data.path.classList.replace("owner", data.owner);
+        //data.inProgress = progress;
+    }
+    reset() {
+        if (!this.path.classList.contains('guild')) {
+            this.path.classList.replace(this.owner, 'owner');
+            this.owner = null;
+            this.buildings = 0;
+            this.inProgress = [0, 0, 0, 0, 0, 0, 0, 0];
+            this.updateChart();
+        }
+    }
+
+
+    /* Map zones functions */
+    handleMouseEnter = () => {
+        this.path.classList.add('js-hover');
+    }
+    handleMouseLeave = () => {
+        this.path.classList.remove('js-hover');
+    }
+
+    handlePickerClick = () => {
+        MapZone.picker = this.owner;
+    }
+
+    handleClick = () => {
+
+        /*if (this.path.classList.contains("guild")) { 
+            // Guild tile
+            let colorIndex = colors.indexOf(this.color);
+            this.color = colors[colorIndex + 1 < colors.length ? colorIndex + 1 : 0];
+            bodyStyles.setProperty("--" + this.path.classList[0] + "-color", this.color);
+            
+            Zones.updateZonesChart();
+
+            return;
+        }*/
+    }
+
+    select() {
+        this.path.classList.add('js-active');
+    }
+    deselect() {
+        this.path.classList.remove('js-active');
+    }
+
+    updateProgress = (index, value) => {
+        this.inProgress[index] = value;
+    }
+    addChart = () => {
+        const chart = this.element.querySelector('.chart');
+        if (!chart) return;
+
+        this.chart = new Chart(chart, {
+            type: 'pie',
+            data: {
+                datasets: [{
+                    data: this.inProgress,
+                    backgroundColor: Zones.getColors(),
+                    borderColor: '#d6d6d6',
+                    borderWidth: 1.5
+                }]
+            },
+            options: {
+                animation: false,
+                events: [],
+                normalized: true,
+                parsing: false
+            }
+        });
+    }
+    updateChart = () => {
+        if (!this.chart) return;
+
+        this.chart.data.datasets[0].data = this.inProgress;
+        this.chart.data.datasets[0].backgroundColor = Zones.getColors();
+        this.chart.update();
+    }
 }
