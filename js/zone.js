@@ -18,7 +18,7 @@ class MapZone {
 
         this.addChart();
 
-        this.element.addEventListener('click', this.handleClick);
+        //this.element.addEventListener('click', this.handleClick);
         this.element.addEventListener('mouseenter', this.handleMouseEnter);
         this.element.addEventListener('mouseleave', this.handleMouseLeave);
     }
@@ -57,20 +57,6 @@ class MapZone {
 
     handlePickerClick = () => {
         MapZone.picker = this.owner;
-    }
-
-    handleClick = () => {
-
-        /*if (this.path.classList.contains("guild")) { 
-            // Guild tile
-            let colorIndex = colors.indexOf(this.color);
-            this.color = colors[colorIndex + 1 < colors.length ? colorIndex + 1 : 0];
-            bodyStyles.setProperty("--" + this.path.classList[0] + "-color", this.color);
-            
-            Zones.updateZonesChart();
-
-            return;
-        }*/
     }
 
     select() {

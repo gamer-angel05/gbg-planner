@@ -241,6 +241,7 @@ class Interface {
         }
 
         if (selected.path.classList.contains('guild')) {
+            Zones.updateGuildColor(selected.zoneId);
             return;
 
         } else if (this.selected) {

@@ -33,7 +33,7 @@ class Zones {
 
             Zones.all.push(zone);
             if (zone.path.classList.contains('guild')) {
-                zone.color = Zones.guildColors[zone.zoneId];
+                zone.color = Zones.guildColors[zone.owner];
                 Zones.guilds.push(zone);
             }
         })
@@ -144,6 +144,19 @@ class Zones {
                 if (!isProgressSafe) neighborZone.path.classList.add('warn');
             }
         })
+    }
+
+    static updateGuildColor = (zoneId) => {
+        /* If a guild tile is clicked while not in any mode, change guild color assigned.
+        */
+        let mapZone = this.all.find(zone => zone.zoneId === zoneId);
+        if (!mapZone.path.classList.contains('guild')) return;
+
+        let colorIndex = this.zoneColors.indexOf(mapZone.color);
+        mapZone.color = this.zoneColors[colorIndex + 1 < this.zoneColors.length ? colorIndex + 1 : 0];
+        bodyStyles.setProperty('--' + mapZone.owner + '-color', mapZone.color);
+            
+        Zones.updateZonesChart();
     }
 
 }
