@@ -21,7 +21,7 @@ function updateHashMap() {
 	var hash = window.location.hash;
 
 	if (hash) {
-		hash = decodeURIComponent(hash);
+		//hash = decodeURIComponent(hash);
 		const hashArray = hash.replace("#", "").split("&");
 		hashArray.forEach(mapZone => {
 			let zone = mapZone.split("=");

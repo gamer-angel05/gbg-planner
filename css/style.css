@@ -126,13 +126,13 @@ body {
 /* SVG map properties */
 .map-zone {
 	fill: white;
-	stroke: #ededed;
+	stroke: #d2d2d2;
 }
 #map-volcano {
 	stroke-width: .12rem;
 }
 #map-waterfalls {
-	stroke-width: .06rem;
+	stroke-width: .1rem;
 }
 #map-waterfalls canvas {
 	width: 50px;
@@ -212,16 +212,15 @@ foreignObject {
 	fill-opacity: 0.15;
 }
 .province:not(.owner) {
-	fill-opacity: 0.6;
-	stroke: #000;
+	fill-opacity: 0.65;
+	/*stroke-width: .1rem;*/
 }
 .province.lock {
-	fill-opacity: 0.12;
 	stroke-width: .1rem;
-	stroke: #000;
+	stroke: rgba(16, 64, 13, 1);
 }
 .province.lock:not(.owner) {
-	fill-opacity: 0.5;
+	fill-opacity: 0.7;
 }
 .province.highlight:not(.owner) {
 	fill-opacity: 0.7;
@@ -230,13 +229,21 @@ foreignObject {
 	fill-opacity: 0.3;
 }
 .province.js-hover:not(.owner) {
-	fill-opacity: 0.8;
+	fill-opacity: 0.85;
 }
 .province.js-active {
 	fill-opacity: 0.3;
 }
 .province.js-active:not(.owner) {
-	fill-opacity: 0.8;
+	fill-opacity: 0.85;
+}
+#map-waterfalls .js-active {
+	stroke-width: .2rem;
+	stroke: #ededed;
+}
+#map-volcano .js-active {
+	stroke-width: .3rem;
+	stroke: #ededed;
 }
 
 .guild {
@@ -252,18 +259,6 @@ foreignObject {
 .footer {
 	background-color:  rgba(7, 52, 4, 0.8);
 	color: #FFFFFF;
-}
-
-#img-logo {
-	max-width: 300px;
-}
-
-#img-crest {
-	max-width: 80px;
-}
-
-#button_section {
-	min-width: 50px;
 }
 
 /*h2 {
@@ -296,15 +291,14 @@ a:hover {
 
 @keyframes blink {
   100%,
-  0% {
-    fill-opacity: 0.3;
-  }
+  0% {}
   60% {
-    fill-opacity: 0.6;
+  	fill: #ededed;
+    fill-opacity: 0.35;
   }
 }
 
 .warn {
-  animation: blink 3s infinite;
+  animation: blink 2s infinite;
 }
 

@@ -14,8 +14,10 @@ class Zones {
         'guild6': '#18ba13',
         'guild7': '#c4282a'
     };
+    static currentMap = 'waterfalls';
     static zoneColors = ['#df42ae', '#9d26e1', '#262dd8', '#b8aea7', '#14bcbb', '#b4bf12', '#18ba13', '#c4282a', '#f37231'];
     // [pink,purple,blue,gray,teal,yellow,green,red,orange]
+    static maps = ['waterfalls', 'volcano'];
 
     constructor() {
         /*  Setup guild colors to css variable
@@ -25,11 +27,12 @@ class Zones {
         }
     }
 
-    setupZonesWithMap(mapData, mapGroups) {
+    setupZonesWithMap(mapData, mapGroups, map) {
         mapGroups.forEach(group => {
             let mapZone = group.querySelector('.js-map-zone');
-            let data = mapData.find(map => mapZone.classList.contains(map.zone.toLowerCase()));
+            let data = mapData.find(map => mapZone.classList[0].toUpperCase() === map.zone);
             let zone = new MapZone(group, mapZone, data);
+            zone.map = map;
 
             Zones.all.push(zone);
             if (zone.path.classList.contains('guild')) {
@@ -43,7 +46,13 @@ class Zones {
         /* Reset map, then import data from hash string
         */
         Zones.reset();
-        zones.forEach(zone => MapZone.importZone(zone));
+        zones.forEach(zone => {
+            let mapZone = Zones.getZone(zone.zone);
+
+            if (mapZone) {
+                mapZone.import(mapZone, zone);
+            }
+        });
     }
     
     hashZones() {
@@ -51,16 +60,20 @@ class Zones {
             ZONE=<owner>&<buildings>-ZONE=<owner>&<buildings>
         */
         let hash = '';
-        MapZone.all.forEach(zone => {
+        Zones.all.forEach(zone => {
             if (!zone.path.classList.contains('guild') && zone.owner) {
-                hash += zone.zoneId + '=' + MapZone.guilds.indexOf(zone.owner) + ',' + zone.buildings + '&';
+                hash += zone.zoneId + '=' + zone.owner.slice(-1) + ',' + zone.buildings + '&';
             }
         })
 
         if (hash.endsWith('&')) hash = hash.slice(0, -1);
-        hash = encodeURIComponent(hash);
+        //hash = encodeURIComponent(hash);
         
         return hash;
+    }
+
+    static getZone = (zoneId) => {
+        return this.all.find(zone => zone.zoneId === zoneId && zone.map === this.currentMap);
     }
 
     static reset = () => {
@@ -122,20 +135,20 @@ class Zones {
         /*  Verify the neighbors, if there's any progress
             that depends on this zoneId.
         */
-        let mapZone = this.all.find(zone => zone.zoneId === zoneId);
+        let mapZone = this.getZone(zoneId);
         let neighbors = mapZone.data.neighbors;
 
         if (!mapZone.owner) return;
 
         neighbors.forEach(neighbor => {
-            let neighborZone = this.all.find(zone => zone.zoneId === neighbor);
+            let neighborZone = this.getZone(neighbor);
 
             if (neighborZone.inProgress[mapZone.owner.slice(-1)]) {
-                let neineighbors = neighborZone.data.neighbors
+                let neineighbors = neighborZone.data.neighbors;
                 let isProgressSafe = false;
 
                 neineighbors.forEach(neineighbor => {
-                    let neineighborZone = this.all.find(zone => zone.zoneId === neineighbor);
+                    let neineighborZone = this.getZone(neineighbor);
                     if (neineighborZone.owner && neineighborZone.owner === mapZone.owner && neineighborZone.zoneId !== mapZone.zoneId) {
                         isProgressSafe = true;
                     };
@@ -149,7 +162,7 @@ class Zones {
     static updateGuildColor = (zoneId) => {
         /* If a guild tile is clicked while not in any mode, change guild color assigned.
         */
-        let mapZone = this.all.find(zone => zone.zoneId === zoneId);
+        let mapZone = this.getZone(zoneId);
         if (!mapZone.path.classList.contains('guild')) return;
 
         let colorIndex = this.zoneColors.indexOf(mapZone.color);

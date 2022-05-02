@@ -340,7 +340,7 @@ var mapZonesVolcano = [
 		},
 		{
 			"zone": "B2S",
-			"neighbors": ["A2T", "B3V", "B3X", "B2T", "B10"]
+			"neighbors": ["A2T", "B3V", "B3X", "B2T", "B1O"]
 		},
 		{
 			"zone": "B1O",

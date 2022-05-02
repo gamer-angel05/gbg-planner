@@ -1,8 +1,5 @@
 class MapZone {
 
-  static picker = null;
-  static isPickerMode = false;
-
     constructor(mapGroup, zone, data) {
         this.element = mapGroup;
         this.path = zone;
@@ -24,18 +21,15 @@ class MapZone {
     }
 
     /* Class functions */
-    static importZone = ({zone, owner, buildings}) => {
+    import = (mapZone, {owner, buildings}) => {
         /*  Get zone, reset class then apply new values
         */
-        let data = MapZone.all.find(e => e.zoneId === zone);
-
-        if (data.owner) data.path.classList.replace(data.owner, "owner");
-        
-        data.owner = "guild" + owner;
-        data.buildings = buildings;
-        data.path.classList.replace("owner", data.owner);
-        //data.inProgress = progress;
+        if (mapZone.owner) mapZone.path.classList.replace(mapZone.owner, 'owner');
+        mapZone.owner = 'guild' + owner;
+        mapZone.buildings = buildings;
+        mapZone.path.classList.replace('owner', mapZone.owner);
     }
+
     reset() {
         if (!this.path.classList.contains('guild')) {
             this.path.classList.replace(this.owner, 'owner');
@@ -53,10 +47,6 @@ class MapZone {
     }
     handleMouseLeave = () => {
         this.path.classList.remove('js-hover');
-    }
-
-    handlePickerClick = () => {
-        MapZone.picker = this.owner;
     }
 
     select() {

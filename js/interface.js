@@ -42,7 +42,7 @@ class Interface {
         this.maps.forEach(map => {
             let mapData = this.data[map];
             mapData.zones.forEach(zone => zone.addEventListener('click', this.handleZoneClick));
-            zones.setupZonesWithMap(mapData.data, mapData.zones);
+            zones.setupZonesWithMap(mapData.data, mapData.zones, map);
         });
 	}
 
@@ -54,6 +54,7 @@ class Interface {
 
 		let currentIndex = this.maps.indexOf(this.currentMap);
 		this.currentMap = (currentIndex === this.maps.length - 1) ? this.maps[0] : this.maps[currentIndex + 1];
+        Zones.currentMap = this.currentMap;
 		this.deselectZone();
 
 		$('#map-' + this.currentMap).css('display', 'block');
@@ -187,10 +188,10 @@ class Interface {
 
         let displayed = $('#picker-mode').css('display') === 'block' ? '#picker-mode' : '#progress-mode';
 
-        if ($(displayed)[0].classList.contains('btn-dark')) { // We are coming from select mode
+        if ($(displayed)[0].classList.contains('btn-dark')) { // Coming from select mode
             $(displayed)[0].classList.replace('btn-dark', 'btn-info');
 
-            this.isPickerMode = displayed.includes('picker') ? false : true; // it will be reversed later in the function
+            this.isPickerMode = displayed.includes('picker') ? false : true; // Reversed later in the function
         } else { // Toggle between picker and progress mode
             let mode = $(!this.isPickerMode ? '#picker-mode' : '#progress-mode')
             let otherMode = $(this.isPickerMode ? '#picker-mode' : '#progress-mode')
@@ -209,7 +210,7 @@ class Interface {
         /*  Set up the properties for the interface.
         */
         const target = event.target;
-        const selected = Zones.all.find(zone => target.classList.contains(zone.zoneId.toLowerCase()));
+        const selected = Zones.getZone(target.classList[0].toUpperCase());
 
         if (this.isResetMode) {
             if (this.selected) this.deselectZone();
@@ -220,27 +221,46 @@ class Interface {
             
             return;
 
-        } else if (event.target === this.target) {
-            // Selected same tile already selected, deselected then.
-            this.deselectZone();
-            
-            return;
-
         } else if (this.isPickerMode || this.isProgressMode) {
             if (selected.path.classList.contains('guild')) {
                 this.picker = selected.owner;
                 return;
 
             } else if (this.picker) {
-                if (this.isPickerMode) {
-                    if (selected.owner) selected.path.classList.replace(selected.owner, 'owner');
-                    selected.owner = this.picker;
-                    selected.path.classList.replace('owner', selected.owner);
+                if (event.target === this.target) {
+                    if (this.isPickerMode) {
+                        if (selected.owner === this.picker) {
+                            selected.path.classList.replace(selected.owner, 'owner');
+                            selected.owner = null;
+
+                        } else {
+                            if (selected.owner) selected.path.classList.replace(selected.owner, 'owner');
+                            selected.owner = this.picker;
+                            selected.path.classList.replace('owner', selected.owner);
+                        }
+                    } else {
+                        let index = this.picker.slice(-1);
+                        selected.updateProgress(index, 1 - selected.inProgress[index]); // Toggle between 0 and 1
+                        selected.updateChart();
+                    }
+
                 } else {
-                    selected.updateProgress(this.picker.slice(-1), 1);
-                    selected.updateChart();
+                    if (this.isPickerMode) {
+                        if (selected.owner) selected.path.classList.replace(selected.owner, 'owner');
+                        selected.owner = this.picker;
+                        selected.path.classList.replace('owner', selected.owner);
+                    } else {
+                        let index = this.picker.slice(-1);
+                        selected.updateProgress(index, 1);
+                        selected.updateChart();
+                    }
                 }
             }
+        } else if (event.target === this.target) {
+            // Selected same tile already selected, deselected then.
+            this.deselectZone();
+            
+            return;
         }
 
         if (selected.path.classList.contains('guild')) {
