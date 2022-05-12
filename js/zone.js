@@ -22,13 +22,17 @@ class MapZone {
     }
 
     /* Class functions */
-    import = (mapZone, {owner, buildings}) => {
+    import = ({owner, buildings, progress}) => {
         /*  Get zone, reset class then apply new values
         */
-        if (mapZone.owner) mapZone.path.classList.replace(mapZone.owner, 'owner');
-        mapZone.owner = 'guild' + owner;
-        mapZone.buildings = buildings;
-        mapZone.path.classList.replace('owner', mapZone.owner);
+        if (this.owner) this.path.classList.replace(this.owner, 'owner');
+        this.buildings = buildings;
+        if (owner > -1) {
+            this.owner = 'guild' + owner;
+            this.path.classList.replace('owner', this.owner);
+        }
+        progress.forEach(index => this.updateProgress(index, 1));
+        this.updateChart();
     }
 
     reset() {
@@ -56,7 +60,15 @@ class MapZone {
     deselect() {
         this.path.classList.remove('js-active');
     }
-
+    getProgress() {
+        let indices = [];
+        let idx = this.inProgress.indexOf(1);
+        while (idx != -1) {
+            indices.push(idx);
+            idx = this.inProgress.indexOf(1, idx + 1);
+        }
+        return indices;
+    }
     updateProgress = (index, value) => {
         this.inProgress[index] = value;
     }

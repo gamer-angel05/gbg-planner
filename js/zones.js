@@ -60,7 +60,7 @@ class Zones {
             let mapZone = Zones.getZone(zone.zone);
 
             if (mapZone) {
-                mapZone.import(mapZone, zone);
+                mapZone.import(zone);
             }
         });
     }
@@ -69,10 +69,16 @@ class Zones {
         /*  Hash that returns all map zones as a single string, 
             ZONE=<owner>&<buildings>-ZONE=<owner>&<buildings>
         */
-        let hash = 'map=' + Zones.currentMap + '&';
-        Zones.all.forEach(zone => {
-            if (!zone.path.classList.contains('guild') && zone.owner) {
-                hash += zone.zoneId + '=' + zone.owner.slice(-1) + ',' + zone.buildings + '&';
+        let currentMap = Zones.currentMap;
+        let hash = 'map=' + currentMap + '&';
+        Zones.getZones().forEach(zone => {
+            let inProgress = zone.getProgress();
+            if ((!zone.path.classList.contains('guild')) && (zone.owner !== undefined || zone.buildings > 0 || inProgress.length)) {
+                hash += zone.zoneId + '=' + (zone.owner ? zone.owner.slice(-1) : -1) + ',';
+                hash += zone.buildings;
+                if (inProgress.length) hash += ',' + inProgress.join();
+
+                hash += '&';
             }
         })
         if (hash.endsWith('&')) hash = hash.slice(0, -1);
@@ -82,19 +88,23 @@ class Zones {
     }
 
     static getZone = (zoneId) => {
-        return this.all.find(zone => zone.zoneId === zoneId && zone.map === this.currentMap);
+        return this.getZones().find(zone => zone.zoneId === zoneId);
+    }
+
+    static getZones() {
+        return this.all.filter(({map}) => map === this.currentMap);
     }
 
     static reset = () => {
-        this.all.forEach(zone => zone.reset());
+        this.getZones().forEach(zone => zone.reset());
     }
 
     static removeWarn = () => {
-        this.all.forEach(zone => zone.path.classList.remove('warn'));
+        this.getZones().forEach(zone => zone.path.classList.remove('warn'));
     }
 
     static lock = () => {
-        this.all.forEach(zone => zone.path.classList.add('lock'));
+        this.getZones().forEach(zone => zone.path.classList.add('lock'));
     }
 
     static lockGuilds = () => {

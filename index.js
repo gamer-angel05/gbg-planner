@@ -22,19 +22,19 @@ function updateHashMap() {
 
 	if (hash) {
 		//hash = decodeURIComponent(hash);
-		const hashArray = hash.replace("#", "").split("&");
+		const hashArray = hash.replace('#', '').split('&');
 		hashArray.forEach(mapZone => {
-			let zone = mapZone.split("=");
-			let data = zone[1].split(",");
+			let zone = mapZone.split('=');
+			let data = zone[1].split(',');
 
 			if (zone[0].toLowerCase() === 'map') {
 				interface.handleSwitchMap(data[0]);
 			} else {
-				mapArray.push({"zone": zone[0], "owner": data[0], "buildings": data[1]});
+				mapArray.push({'zone': zone[0], 'owner': data[0], 'buildings': data[1], 'progress': data.slice(2)});
 			}
 		})
 		zones.importZonesWithHash(mapArray);
-		window.location.hash = "";
+		window.location.hash = '';
 	}
 }
 
