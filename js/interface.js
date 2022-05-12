@@ -240,8 +240,7 @@ class Interface {
                         }
                     } else {
                         let index = this.picker.slice(-1);
-                        selected.updateProgress(index, 1 - selected.inProgress[index]); // Toggle between 0 and 1
-                        selected.updateChart();
+                        this.updateZoneChart(index, 1 - selected.inProgress[index]); // Toggle between 0 and 1
                     }
 
                 } else {
@@ -250,9 +249,7 @@ class Interface {
                         selected.owner = this.picker;
                         selected.path.classList.replace('owner', selected.owner);
                     } else {
-                        let index = this.picker.slice(-1);
-                        selected.updateProgress(index, 1);
-                        selected.updateChart();
+                        this.updateZoneChart(this.picker.slice(-1), 1);
                     }
                 }
             }
@@ -278,6 +275,9 @@ class Interface {
         this.selected = selected;
         Zones.warnNeighbors(this.selected.zoneId);
         $('#label-zone').text(this.selected.zoneId);
+
+        // Clear in-progress matching owner
+        if (this.selected.owner) this.updateZoneChart(this.selected.owner.slice(-1), 0);
 
         // Owner swatch
         if (this.selected.owner) {
@@ -321,5 +321,12 @@ class Interface {
             this.selected.deselect();
             this.selected = null;
         }
+    }
+
+    updateZoneChart = (index, value) => {
+        /*  Update the chart with new values.
+        */
+        this.selected.updateProgress(index, value);
+        this.selected.updateChart();
     }
 }
