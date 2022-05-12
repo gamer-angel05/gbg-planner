@@ -231,7 +231,7 @@ class Interface {
                         }
                     } else {
                         let index = this.picker.slice(-1);
-                        this.updateZoneChart(index, 1 - selected.inProgress[index]); // Toggle between 0 and 1
+                        this.updateZoneChart(index, 1 - selected.inProgress[index], selected); // Toggle between 0 and 1
                     }
 
                 } else {
@@ -240,7 +240,7 @@ class Interface {
                         selected.owner = this.picker;
                         selected.path.classList.replace('owner', selected.owner);
                     } else {
-                        this.updateZoneChart(this.picker.slice(-1), 1);
+                        this.updateZoneChart(this.picker.slice(-1), 1, selected);
                     }
                 }
             }
@@ -314,10 +314,11 @@ class Interface {
         }
     }
 
-    updateZoneChart = (index, value) => {
+    updateZoneChart = (index, value, zone=null) => {
         /*  Update the chart with new values.
         */
-        this.selected.updateProgress(index, value);
-        this.selected.updateChart();
+        let selected = zone || this.selected;
+        selected.updateProgress(index, value);
+        selected.updateChart();
     }
 }
