@@ -60,11 +60,12 @@ body {
 	padding: 15px;
 }
 
-#map-volcano {
+#button-volcano {
 	display: none;
 }
-#button-waterfalls {
-	display: none;
+#button-volcano, #button-waterfalls {
+	font: normal 34px white;
+	font-family: Arial, Helvetica, sans-serif;
 }
 
 /* Navigation */
@@ -129,7 +130,8 @@ body {
 	stroke: #d2d2d2;
 }
 #map-volcano {
-	stroke-width: .12rem;
+	display: none;
+	stroke-width: .16rem;
 }
 #map-waterfalls {
 	stroke-width: .1rem;

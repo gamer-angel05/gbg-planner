@@ -1,10 +1,11 @@
 class MapZone {
 
-    constructor(mapGroup, zone, data) {
+    constructor(mapGroup, zone, data, map) {
         this.element = mapGroup;
         this.path = zone;
         this.path.dataset['id'] = data.zone;
         this.data = data;
+        this.map = map;
         this.zoneId = data.zone;
         this.inProgress = [0, 0, 0, 0, 0, 0, 0, 0];
         this.buildings = 0;
@@ -70,7 +71,7 @@ class MapZone {
                     data: this.inProgress,
                     backgroundColor: Zones.getColors(),
                     borderColor: '#d6d6d6',
-                    borderWidth: 1.5
+                    borderWidth: this.map === 'waterfalls' ? 2.0 : 3.0
                 }]
             },
             options: {

@@ -31,8 +31,7 @@ class Zones {
         mapGroups.forEach(group => {
             let mapZone = group.querySelector('.js-map-zone');
             let data = mapData.find(map => mapZone.classList[0].toUpperCase() === map.zone);
-            let zone = new MapZone(group, mapZone, data);
-            zone.map = map;
+            let zone = new MapZone(group, mapZone, data, map);
 
             Zones.all.push(zone);
             if (zone.path.classList.contains('guild')) {
