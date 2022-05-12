@@ -14,10 +14,21 @@ class Zones {
         'guild6': '#18ba13',
         'guild7': '#c4282a'
     };
-    static currentMap = 'waterfalls';
     static zoneColors = ['#df42ae', '#9d26e1', '#262dd8', '#b8aea7', '#14bcbb', '#b4bf12', '#18ba13', '#c4282a', '#f37231'];
     // [pink,purple,blue,gray,teal,yellow,green,red,orange]
+    
+    static currentMap = 'waterfalls';
     static maps = ['waterfalls', 'volcano'];
+    static data = {
+        'volcano': {
+            'zones': document.querySelectorAll('#map-volcano .map-group'),
+            'data': mapZonesVolcano
+        },
+        'waterfalls': {
+            'zones': document.querySelectorAll('#map-waterfalls .map-group'),
+            'data': mapZonesWaterfalls
+        }
+    };
 
     constructor() {
         /*  Setup guild colors to css variable
@@ -58,13 +69,12 @@ class Zones {
         /*  Hash that returns all map zones as a single string, 
             ZONE=<owner>&<buildings>-ZONE=<owner>&<buildings>
         */
-        let hash = '';
+        let hash = 'map=' + Zones.currentMap + '&';
         Zones.all.forEach(zone => {
             if (!zone.path.classList.contains('guild') && zone.owner) {
                 hash += zone.zoneId + '=' + zone.owner.slice(-1) + ',' + zone.buildings + '&';
             }
         })
-
         if (hash.endsWith('&')) hash = hash.slice(0, -1);
         //hash = encodeURIComponent(hash);
         

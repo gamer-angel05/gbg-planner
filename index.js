@@ -26,7 +26,12 @@ function updateHashMap() {
 		hashArray.forEach(mapZone => {
 			let zone = mapZone.split("=");
 			let data = zone[1].split(",");
-			mapArray.push({"zone": zone[0], "owner": data[0], "buildings": data[1]});
+
+			if (zone[0].toLowerCase() === 'map') {
+				interface.handleSwitchMap(data[0]);
+			} else {
+				mapArray.push({"zone": zone[0], "owner": data[0], "buildings": data[1]});
+			}
 		})
 		zones.importZonesWithHash(mapArray);
 		window.location.hash = "";

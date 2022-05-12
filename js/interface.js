@@ -5,20 +5,8 @@ class Interface {
     static isProgressMode = false;
     static isResetMode = false;
 	
-    currentMap = 'waterfalls';
-	maps = ['waterfalls', 'volcano'];
     selected = null;
     target = null;
-    data = {
-        'volcano': {
-            'zones': document.querySelectorAll('#map-volcano .map-group'),
-            'data': mapZonesVolcano
-        },
-        'waterfalls': {
-            'zones': document.querySelectorAll('#map-waterfalls .map-group'),
-            'data': mapZonesWaterfalls
-        }
-    };
 	buildGroups = document.querySelectorAll('.build');
     ownerSwatches = document.querySelectorAll('#owner-section .swatch');
     progressSwatches = document.querySelectorAll('#progress-section .swatch');
@@ -39,26 +27,29 @@ class Interface {
         this.buildGroups.forEach(group => {
             group.addEventListener('click', this.handleBuildClick);
         })
-        this.maps.forEach(map => {
-            let mapData = this.data[map];
+        Zones.maps.forEach(map => {
+            let mapData = Zones.data[map];
             mapData.zones.forEach(zone => zone.addEventListener('click', this.handleZoneClick));
             zones.setupZonesWithMap(mapData.data, mapData.zones, map);
         });
 	}
 
-	handleSwitchMap() {
+	handleSwitchMap = (map=null) => {
 		/* Switch up the map to appear visually. Hide the old map, display the new one.
 		*/
-		$('#map-' + this.currentMap).css('display', 'none');
-		$('#button-' + this.currentMap).css('display', 'none');
+        let currentMap = Zones.currentMap;
+        let maps = Zones.maps;
 
-		let currentIndex = this.maps.indexOf(this.currentMap);
-		this.currentMap = (currentIndex === this.maps.length - 1) ? this.maps[0] : this.maps[currentIndex + 1];
-        Zones.currentMap = this.currentMap;
+		$('#map-' + currentMap).css('display', 'none');
+		$('#button-' + currentMap).css('display', 'none');
+
+		let currentIndex = maps.indexOf(currentMap);
+		currentMap = (map) ? map : (currentIndex === maps.length - 1) ? maps[0] : maps[currentIndex + 1];
+        Zones.currentMap = currentMap;
 		this.deselectZone();
 
-		$('#map-' + this.currentMap).css('display', 'block');
-		$('#button-' + this.currentMap).css('display', 'block');
+		$('#map-' + currentMap).css('display', 'block');
+		$('#button-' + currentMap).css('display', 'block');
 	}
 
 	/* Attrition buildings */
