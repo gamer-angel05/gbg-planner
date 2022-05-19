@@ -187,8 +187,6 @@ class Zones {
         let colorIndex = this.zoneColors.indexOf(mapZone.color);
         mapZone.color = this.zoneColors[colorIndex + 1 < this.zoneColors.length ? colorIndex + 1 : 0];
         bodyStyles.setProperty('--' + mapZone.owner + '-color', mapZone.color);
-            
-        Zones.updateZonesChart();
     }
 
 }

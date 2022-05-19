@@ -25,7 +25,6 @@ class MapZone {
     import = ({owner, buildings, progress}) => {
         /*  Get zone, reset class then apply new values
         */
-        if (this.owner) this.path.classList.replace(this.owner, 'owner');
         this.buildings = buildings;
         if (owner > -1) {
             this.owner = 'guild' + owner;
@@ -73,32 +72,23 @@ class MapZone {
         this.inProgress[index] = value;
     }
     addChart = () => {
-        const chart = this.element.querySelector('.chart');
+        let chart = this.element.querySelector('.ct-chart');
         if (!chart) return;
 
-        this.chart = new Chart(chart, {
-            type: 'pie',
-            data: {
-                datasets: [{
-                    data: this.inProgress,
-                    backgroundColor: Zones.getColors(),
-                    borderColor: '#d6d6d6',
-                    borderWidth: this.map === 'waterfalls' ? 2.0 : 3.0
-                }]
-            },
-            options: {
-                animation: false,
-                events: [],
-                normalized: true,
-                parsing: false
-            }
-        });
+        let options = {
+            showLabel: false,
+            ignoreEmptyValues: true,
+            fullWidth: true
+        }
+        this.chart = new Chartist.Pie(chart, [], options);
     }
     updateChart = () => {
         if (!this.chart) return;
 
-        this.chart.data.datasets[0].data = this.inProgress;
-        this.chart.data.datasets[0].backgroundColor = Zones.getColors();
-        this.chart.update();
+        let elements = [];
+        this.inProgress.forEach((element, index) => {
+            elements.push({value: element, className: 'guild' + index});
+        })
+        this.chart.update({series: elements});
     }
 }
