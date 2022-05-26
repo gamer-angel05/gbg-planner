@@ -77,17 +77,13 @@ class MapZone {
 
         const map = this.map;
         let options = {
-            width: map === 'waterfalls' ? '50' : '160',
-            height: map === 'waterfalls' ? '50' : '650',
+            /*width: map === 'waterfalls' ? '50' : '160',
+            height: map === 'waterfalls' ? '50' : '650',*/
             showLabel: false,
             ignoreEmptyValues: true,
             fullWidth: true
         }
-        this.chart = new Chartist.Pie(chart, [], options,
-            [['screen and (max-width: 470px)', {
-                width: map === 'waterfalls' ? '205' : '650',
-                height: map === 'waterfalls' ? '205' : '650',
-        }]]);
+        this.chart = new Chartist.Pie(chart, [], options);
     }
     updateChart = () => {
         if (!this.chart) return;

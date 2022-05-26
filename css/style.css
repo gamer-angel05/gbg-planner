@@ -139,13 +139,25 @@ body {
 
 .ct-chart {
   stroke: #d2d2d2;
+  position: relative;
+  width: 100px;
 }
-
 
 foreignObject {
 	pointer-events: none;
-	width: 100%;
-	height: 100%;
+	/*width: 100%;
+	height: 100%;*/
+	/*x: 50;
+	y: 50;*/
+	overflow: visible;
+}
+#map-waterfalls foreignObject {
+	width: 50px;
+	height: 50px;
+}
+#map-volcano foreignObject {
+	width: 160px;
+	height: 160px;
 }
 
 .guild0 {
