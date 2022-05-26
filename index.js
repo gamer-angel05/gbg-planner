@@ -1,6 +1,6 @@
 const zones = new Zones();
 const interface = new Interface();
-const version = '0.01'
+const version = '0.01b'
 
 
 function handleMapClick() {

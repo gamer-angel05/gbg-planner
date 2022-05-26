@@ -77,18 +77,18 @@ class MapZone {
 
         const map = this.map;
         let options = {
-            width: '100%', /*map === 'waterfalls' ? '50' : '160',*/
-            height: '100%',/*map === 'waterfalls' ? '50' : '160',*/
+            width: map === 'waterfalls' ? '50' : '160',
+            height: map === 'waterfalls' ? '50' : '160',
             showLabel: false,
             ignoreEmptyValues: true,
             fullWidth: true,
             responsive: true
         }
-        this.chart = this.chart = new Chartist.Pie(chart, [], options);/*,
+        this.chart = this.chart = new Chartist.Pie(chart, [], options,
             [['screen and (max-width: 470px)', {
-                width: map === 'waterfalls' ? '205' : '650',
-                height: map === 'waterfalls' ? '205' : '650',
-        }]]);*/
+                width: map === 'waterfalls' ? '75' : '650',
+                height: map === 'waterfalls' ? '75' : '650',
+        }]]);
     }
     updateChart = () => {
         if (!this.chart) return;
