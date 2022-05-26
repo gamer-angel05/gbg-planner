@@ -1,5 +1,6 @@
 const zones = new Zones();
 const interface = new Interface();
+const version = '0.01'
 
 
 function handleMapClick() {
@@ -61,6 +62,7 @@ function __init__() {
 	$('[data-toggle="tooltip"]').tooltip({trigger : 'hover'});
 	updateHashMap();
 	window.onhashchange = updateHashMap;
+	$('#version').text('version: ' + version);
 }
 
 $(document).ready(__init__);
