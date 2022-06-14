@@ -476,7 +476,7 @@ var mapZonesVolcano = [
 		},
 		{
 			"zone": "D4G",
-			"neighbors": ["D4H", "D3Z", "D3Y", "D4F"]
+			"neighbors": ["D4H", "D3Z", "D4F"]
 		},
 		{
 			"zone": "D3Z",
