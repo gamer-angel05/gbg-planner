@@ -8,40 +8,46 @@ class Zones {
         'guild0': '#df42ae',
         'guild1': '#9d26e1',
         'guild2': '#262dd8',
-        'guild3': '#b8aea7',
+        'guild3': '#f37231',
         'guild4': '#14bcbb',
         'guild5': '#b4bf12',
         'guild6': '#18ba13',
         'guild7': '#c4282a'
     };
-    static zoneColors = ['#df42ae', '#9d26e1', '#262dd8', '#b8aea7', '#14bcbb', '#b4bf12', '#18ba13', '#c4282a', '#f37231'];
-    // [pink,purple,blue,gray,teal,yellow,green,red,orange]
+    static zoneColors = ['#df42ae', '#9d26e1', '#262dd8', '#f37231', '#14bcbb', '#b4bf12', '#18ba13', '#c4282a', '#b8aea7'];
+    // [pink,purple,blue,orange,teal,yellow,green,red,gray]
     
     static currentMap = 'waterfalls';
     static maps = ['waterfalls', 'volcano'];
     static data = {
         'volcano': {
             'zones': document.querySelectorAll('#map-volcano .map-group'),
-            'data': mapZonesVolcano
+            'data': mapZonesVolcano,
+            'guilds': guildZonesVolcano
         },
         'waterfalls': {
             'zones': document.querySelectorAll('#map-waterfalls .map-group'),
-            'data': mapZonesWaterfalls
+            'data': mapZonesWaterfalls,
+            'guilds': guildZonesWaterfalls
         }
     };
 
     constructor() {
-        /*  Setup guild colors to css variable
+        /*  Setup guild colors to css variable and assign
         */
         for (const [key, value] of Object.entries(Zones.guildColors)) {
             bodyStyles.setProperty('--' + key + '-color', value);
         }
     }
 
-    setupZonesWithMap(mapData, mapGroups, map) {
+    setupZonesWithMap(mapData, mapGroups, map, guilds) {
         mapGroups.forEach(group => {
             let mapZone = group.querySelector('.js-map-zone');
             let data = mapData.find(map => mapZone.classList[0].toUpperCase() === map.zone);
+            
+            let isGuild = guilds.findIndex((element) => element === data.zone);
+            if (isGuild > -1) this.assignGuildZones(mapZone, 'guild' + isGuild);
+            
             let zone = new MapZone(group, mapZone, data, map);
 
             Zones.all.push(zone);
@@ -50,6 +56,11 @@ class Zones {
                 Zones.guilds.push(zone);
             }
         })
+    }
+
+    assignGuildZones(zone, guild) {
+        zone.classList.replace('province', 'guild');
+        zone.classList.replace('owner', guild);
     }
 
     importZonesWithHash(zones) {

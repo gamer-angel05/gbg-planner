@@ -244,7 +244,7 @@ var mapZonesWaterfalls = [
 			"neighbors": ["A2A", "B2A", "C2A", "D2A", "E2A", "F2A"]
 		}
 	]
-
+var guildZonesWaterfalls = ['A5A','A5D','B5C','C5B','D5A','D5D','E5C','F5B']
 var mapZonesVolcano = [
 		{
 			"zone": "A4A",
@@ -487,3 +487,5 @@ var mapZonesVolcano = [
 			"neighbors": ["A4A", "D3Z", "D4G"]
 		}
 	]
+
+var guildZonesVolcano = ['A4A','A4E','B4A','B4E','C4A','C4E','D4A','D4E']

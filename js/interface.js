@@ -30,7 +30,7 @@ class Interface {
         Zones.maps.forEach(map => {
             let mapData = Zones.data[map];
             mapData.zones.forEach(zone => zone.addEventListener('click', this.handleZoneClick));
-            zones.setupZonesWithMap(mapData.data, mapData.zones, map);
+            zones.setupZonesWithMap(mapData.data, mapData.zones, map, mapData.guilds);
         });
 	}
 
