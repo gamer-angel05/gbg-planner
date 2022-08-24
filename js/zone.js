@@ -9,6 +9,7 @@ class MapZone {
         this.zoneId = data.zone;
         this.inProgress = [0, 0, 0, 0, 0, 0, 0, 0];
         this.buildings = 0;
+        this.owner = null;
 
         if (this.path.classList.contains('guild')) {
             this.owner = this.path.classList[1];
@@ -35,7 +36,7 @@ class MapZone {
     }
 
     reset() {
-        if (!this.path.classList.contains('guild')) {
+        if (this.path.classList.contains('province')) {
             this.path.classList.replace(this.owner, 'owner');
             this.owner = null;
             this.buildings = 0;

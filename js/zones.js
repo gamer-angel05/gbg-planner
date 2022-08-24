@@ -84,7 +84,7 @@ class Zones {
         let hash = 'map=' + currentMap + '&';
         Zones.getZones().forEach(zone => {
             let inProgress = zone.getProgress();
-            if ((!zone.path.classList.contains('guild')) && (zone.owner !== undefined || zone.buildings > 0 || inProgress.length)) {
+            if ((zone.path.classList.contains('province')) && (zone.owner || zone.buildings > 0 || inProgress.length)) {
                 hash += zone.zoneId + '=' + (zone.owner ? zone.owner.slice(-1) : -1) + ',';
                 hash += zone.buildings;
                 if (inProgress.length) hash += ',' + inProgress.join();
