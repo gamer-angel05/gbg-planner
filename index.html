@@ -109,7 +109,14 @@
 									</g>
 								</svg>
 							</button>
-							<button id="select-mode" class="btn btn-info" type="button" onclick="handleSelectClick();" title="Select and edit a zone" data-toggle="tooltip" data-placement="bottom" data-html="true">
+							<button id="guild-mode" class="btn btn-dark" type="button" onclick="handleModeClick('guild');" title="Edit guilds" data-toggle="tooltip" data-placement="bottom" data-html="true">
+								<svg version="1.1" width="32" height="32" viewBox="0 0 512 512" aria-hidden="true">
+									<g fill="#FFFFFF">
+										<path d="M454.915,1.566c-5.563-2.648-12.14-1.898-16.945,1.961c-47.407,38.141-124.532,38.141-171.939,0  c-5.859-4.703-14.203-4.703-20.063,0c-47.407,38.141-124.532,38.141-171.939,0c-4.805-3.859-11.39-4.609-16.945-1.961  C51.53,4.223,48,9.84,48,15.996v288.002c0,92.782,76.086,170.298,203.532,207.369c1.461,0.422,2.961,0.633,4.468,0.633  c1.508,0,3.007-0.211,4.468-0.633C387.914,474.297,464,396.78,464,303.998V15.996C464,9.84,460.469,4.223,454.915,1.566z M80,45.207  c34,17.092,73.953,22.318,111.711,15.787L80,182.861V45.207z M240,474.063c-101-34.61-160-97.159-160-170.065V272h160V474.063z   M240,240h-76.366L240,154.086V240z M240,105.908L120.808,240H80v-9.775L240,55.678V105.908z M272,272h45.211L272,324.745V272z   M272,373.92L359.361,272h50.977L272,423.511V373.92z M432,303.998c0,72.906-59,135.455-160,170.065v-3.158l160-175.18V303.998z   M432,240H272V44.922c49,24.78,111,25.026,160,0.293V240z"/>
+									</g>
+								</svg>
+							</button>
+							<button id="select-mode" class="btn btn-info" type="button" onclick="handleModeClick('select');" title="Select and edit a zone" data-toggle="tooltip" data-placement="bottom" data-html="true">
 								<svg version="1.1" width="32" height="32" viewBox="0 0 124.634 124.634" aria-hidden="true">
 									<g fill="#FFFFFF">
 										<path d="M62.713,0.02V0c-0.134,0-0.265,0.008-0.396,0.008S62.055,0,61.921,0v0.02C35.144,0.446,13.565,22.269,13.565,49.148
@@ -119,7 +126,7 @@
 									</g>
 								</svg>
 							</button>
-							<button id="picker-mode" class="btn btn-dark" type="button" onclick="handlePickerClick();" title="Pick the guild and assign zone ownership" data-toggle="tooltip" data-placement="bottom" data-html="true">
+							<button id="picker-mode" class="btn btn-dark" type="button" onclick="handleModeClick('picker');" title="Pick the guild and assign zone ownership" data-toggle="tooltip" data-placement="bottom" data-html="true">
 								<svg version="1.1" width="32" height="32" viewBox="0 0 36 36" aria-hidden="true">
 									<g fill="#FFFFFF">
 										<path d="M33.73,2.11a4.09,4.09,0,0,0-5.76.1L22.81,7.38a3.13,3.13,0,0,1-4.3.11L17.09,8.91,27,18.79l1.42-1.42A3.18,3.18,0,0,1,28.46,13l5.17-5.17A4.08,4.08,0,0,0,33.73,2.11Z" class="clr-i-solid clr-i-solid-path-1"/>
@@ -127,10 +134,10 @@
 									</g>
 								</svg>
 							</button>
-							<button id="progress-mode" class="btn btn-dark" type="button" onclick="handlePickerClick();" title="Pick the guild and assign in-progress ownership" data-toggle="tooltip" data-placement="bottom" data-html="true">
+							<button id="progress-mode" class="btn btn-dark" type="button" onclick="handleModeClick('progress');" title="Pick the guild and assign in-progress ownership" data-toggle="tooltip" data-placement="bottom" data-html="true">
 								<svg version="1.1" width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
 									<g fill="#FFFFFF">
-										<path d="M16,2A14,14,0,1,0,30,16,14.0158,14.0158,0,0,0,16,2Zm0,26A12,12,0,0,1,16,4V16l8.4812,8.4814A11.9625,11.9625,0,0,1,16,28Z"/><rect id="progress-mode-rect" width="32" height="32"/>
+										<path d="M16,2A14,14,0,1,0,30,16,14.0158,14.0158,0,0,0,16,2Zm0,26A12,12,0,0,1,16,4V16l8.4812,8.4814A11.9625,11.9625,0,0,1,16,28Z"/>
 									</g>
 								</svg>
 							</button>

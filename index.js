@@ -39,20 +39,15 @@ function updateHashMap() {
 	}
 }
 
-function handleSelectClick() {
-	interface.selectMapZone();
+function handleModeClick(event) {
+	interface.handleMode(event);
 }
-
-function handleResetClick() {
-	interface.resetMap();
-}
-
 function handleResetModeClick() {
 	interface.toggleResetMode();
 }
 
-function handlePickerClick() {
-	interface.togglePickerMapZones();
+function handleResetClick() {
+	interface.resetMap();
 }
 
 

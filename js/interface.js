@@ -1,10 +1,9 @@
 class Interface {
 
     static picker = null;
-    static isPickerMode = false;
-    static isProgressMode = false;
-    static isResetMode = false;
-	
+	static modes = [['select','guild'],['picker','progress'],'reset'];
+    
+    currentMode = 'select';
     selected = null;
     target = null;
 	buildGroups = document.querySelectorAll('.build');
@@ -31,8 +30,86 @@ class Interface {
             let mapData = Zones.data[map];
             mapData.zones.forEach(zone => zone.addEventListener('click', this.handleZoneClick));
             zones.setupZonesWithMap(mapData.data, mapData.zones, map, mapData.guilds);
-        });
+        })
 	}
+
+    handleMode = (event) => {
+        if (event === this.currentMode) {
+            this.toggleMode();
+            event = this.currentMode;
+        }
+
+        this.updateMode(event);
+        switch (event) {
+            case 'guild': 
+                this.guildMode();
+                break;
+            case 'select':
+                this.selectMode();
+                break;
+            case 'picker':
+                this.pickerMode();
+                break;
+            case 'progress':
+                this.progressMode();
+                break;
+        }
+    }
+    toggleMode = () => {
+        /*  Use current mode and 
+            toggle to the next option.
+        */
+        const modes = Interface.modes;
+        let currentMode = this.currentMode;
+
+        for (let i = 0; i < modes.length; i++) {
+            let mode = modes[i];
+            if (Array.isArray(mode) && mode.includes(currentMode)) { // stacked button to toggle
+                let currentIndex = mode.indexOf(currentMode);
+                this.updateMode(mode[currentIndex + 1 < mode.length ? currentIndex + 1 : 0]);
+            }
+        }
+    }
+    updateMode = (newMode) => {
+        /*  Get current mode button, disable overlay and
+            enable new button overlay.
+        */
+        const modes = Interface.modes;
+        let currentMode = this.currentMode;
+        let currentButton = $('#' + currentMode + '-mode');
+        let newButton = $('#' + newMode + '-mode');
+
+        for (let i = 0; i < modes.length; i++) {
+            let mode = modes[i];
+            if (Array.isArray(mode) && mode.includes(currentMode) && mode.includes(newMode)) { // stacked button to toggle
+                currentButton.css('display', 'none');
+                newButton.css('display', 'block');
+                break;
+            }
+        }
+        currentButton[0].classList.replace('btn-info', 'btn-dark');
+        newButton[0].classList.replace('btn-dark', 'btn-info');
+        this.currentMode = newMode;
+    }
+    guildMode = () => {
+        Zones.lockProvinces();
+    }
+
+    selectMode = () => {
+        /*  Select to individually modify a zone
+        */
+        Zones.unlockProvinces();
+    }
+
+    pickerMode = () => {
+        //  Copy paste owner to multiple provinces.
+        Zones.lockProvinces();
+    }
+
+    progressMode = () => {
+        //  Copy paste progress-owner to multiple provinces.
+        Zones.lockProvinces();
+    }
 
 	handleSwitchMap = (map=null) => {
 		/* Switch up the map to appear visually. Hide the old map, display the new one.
@@ -159,49 +236,12 @@ class Interface {
         this.deselectZone();
     }
 
-    selectMapZone() {
-        /*  Toggle the Select to individually modify a zone
-            and disable "picker/progress mode"
-        */
-        $(this.isPickerMode ? '#picker-mode' : '#progress-mode')[0].classList.replace('btn-info', 'btn-dark');
-        this.isPickerMode = false;
-        this.isProgressMode = false;
-        this.picker = null;
-        Zones.unlockProvinces()
-        $('#select-mode')[0].classList.replace('btn-dark', 'btn-info');
-    }
-
-    togglePickerMapZones() {
-        /*  Toggle between the picker, the progress
-            to copy paste owner to multiple provinces
-        */
-        $('#select-mode')[0].classList.replace('btn-info', 'btn-dark');
-
-        let displayed = $('#picker-mode').css('display') === 'block' ? '#picker-mode' : '#progress-mode';
-
-        if ($(displayed)[0].classList.contains('btn-dark')) { // Coming from select mode
-            $(displayed)[0].classList.replace('btn-dark', 'btn-info');
-
-            this.isPickerMode = displayed.includes('picker') ? false : true; // Reversed later in the function
-        } else { // Toggle between picker and progress mode
-            let mode = $(!this.isPickerMode ? '#picker-mode' : '#progress-mode')
-            let otherMode = $(this.isPickerMode ? '#picker-mode' : '#progress-mode')
-
-            otherMode.css('display', 'none');
-            mode[0].classList.replace('btn-dark', 'btn-info');
-            mode.css('display', 'block');
-        }
-        Zones.lockProvinces();
-
-        this.isPickerMode = !this.isPickerMode;
-        this.isProgressMode = !this.isPickerMode;
-    }
-
     handleZoneClick = (event) => {
         /*  Set up the properties for the interface.
         */
         const target = event.target;
         const selected = Zones.getZone(target.classList[0].toUpperCase());
+        const currentMode = this.currentMode;
 
         if (this.isResetMode) {
             if (this.selected) this.deselectZone();
@@ -212,7 +252,7 @@ class Interface {
             
             return;
 
-        } else if (this.isPickerMode || this.isProgressMode) {
+        } else if (currentMode === 'picker' || currentMode === 'progress') {
             if (selected.path.classList.contains('guild')) {
                 this.picker = selected.owner;
                 return;
@@ -235,7 +275,7 @@ class Interface {
                     }
 
                 } else {
-                    if (this.isPickerMode) {
+                    if (currentMode === 'picker') {
                         if (selected.owner) selected.path.classList.replace(selected.owner, 'owner');
                         selected.owner = this.picker;
                         selected.path.classList.replace('owner', selected.owner);
@@ -251,7 +291,7 @@ class Interface {
             return;
         }
 
-        if (selected.path.classList.contains('guild')) {
+        if (currentMode === 'select' && selected.path.classList.contains('guild')) {
             Zones.updateGuildColor(selected.zoneId);
             return;
 

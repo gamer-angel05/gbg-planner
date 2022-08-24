@@ -272,12 +272,11 @@ h4 {
 	padding-top: 5px;
 }*/
 
-#progress-mode {
+#guild-mode {
 	display: none;
 }
-
-#progress-mode-rect {
-	fill: none;
+#progress-mode {
+	display: none;
 }
 
 p, h2, h4 {
